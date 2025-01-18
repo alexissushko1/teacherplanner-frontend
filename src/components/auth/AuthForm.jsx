@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
-import toastr from "toastr";
+//import toastr from "toastr";
 
-function AuthForm() {
+export default function AuthForm() {
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(true);
