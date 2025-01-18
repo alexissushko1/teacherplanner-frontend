@@ -20,7 +20,6 @@ function Navbar() {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setIsDropdownVisible(e.target.value.length > 0);
   };
 
   const handlePageSelection = (url) => {
@@ -36,7 +35,11 @@ function Navbar() {
 
   return (
     <nav>
-      <div className="search-container">
+      <div
+        className="search-container"
+        onMouseEnter={() => setIsDropdownVisible(true)}
+        onMouseLeave={() => setIsDropdownVisible(false)}
+      >
         <input
           type="text"
           placeholder="Search pages..."
@@ -45,7 +48,7 @@ function Navbar() {
           className="search-bar"
         />
 
-        {isDropdownVisible && (
+        {(isDropdownVisible || searchQuery) && (
           <ul className="dropdown-list">
             {filteredPages.map((page) => (
               <li
@@ -59,7 +62,7 @@ function Navbar() {
           </ul>
         )}
       </div>
-      <menu>
+      <ul className="nav-menu">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -76,7 +79,7 @@ function Navbar() {
             <NavLink to="/users/login">Log In</NavLink>
           </li>
         )}
-      </menu>
+      </ul>
     </nav>
   );
 }
