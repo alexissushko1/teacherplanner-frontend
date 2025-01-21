@@ -14,28 +14,51 @@ export default function AuthForm() {
   const [register, { error: registerError }] = useRegisterMutation();
 
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const attemptAuth = async (evt) => {
     evt.preventDefault();
 
     const authMethod = isLogin ? login : register;
-    const credentials = { username, password };
-    console.log(isLogin);
+    const credentials = { username, email, password };
+    console.log("isLogin", isLogin);
+    console.log("Credentials: ", credentials);
 
     try {
-      await authMethod(credentials).unwrap();
-      toastr.options.extendedTimeOut = 0;
-      toastr.options.positionClass = "toast-bottom-right";
-      toastr.success(`${authAction} successful!`);
+      const response = await authMethod(credentials).unwrap();
+      console.log("Response: ", response);
+      setUsername("");
+      setEmail("");
+      setPassword("");
+
+      if (isLogin) {
+        navigate("/");
+      }
+      //toastr.options.extendedTimeOut = 0;
+      //toastr.options.positionClass = "toast-bottom-right";
+      //toastr.success(`${authAction} successful!`);
     } catch (e) {
       console.error(e);
+      if (e & e.message) {
+        console.error("Error message: ", e.message);
+      }
+      if (e & e.data) {
+        console.error("Error data: ", e.data);
+      }
+      console.log("Error", e.message);
 
       if (isLogin && loginError) {
-        toastr.error(`${JSON.stringify(loginError.data)}`);
-        toastr.options.extendedTimeOut = 30;
+        console.error("Login error", loginError);
+        console.error(`${JSON.stringify(loginError.data)}`);
+        //toastr.error(`${JSON.stringify(loginError.data)}`);
+        //toastr.options.extendedTimeOut = 30;
       } else if (!isLogin && registerError) {
-        toastr.error(`${JSON.stringify(registerError.data.e)}`);
-        toastr.options.extendedTimeOut = 30;
+        console.error("Register error: ", registerError);
+        console.error(
+          `JSON Register error: ${JSON.stringify(registerError.data.e)}`
+        );
+        //toastr.error(`${JSON.stringify(registerError.data.e)}`);
+        //toastr.options.extendedTimeOut = 30;
       }
     }
   };
@@ -58,6 +81,21 @@ export default function AuthForm() {
                 />
               </label>
             </div>
+
+            <div className="emailContainer">
+              <label className="email">
+                Email
+                <input
+                  name="email"
+                  value={email}
+                  className="emailText"
+                  onChange={(evt) => setEmail(evt.target.value)}
+                  aria-label="email-input"
+                  type="email"
+                />
+              </label>
+            </div>
+
             <div className="passwordContainer">
               <label className="password">
                 Password

@@ -5,7 +5,10 @@ import { useDispatch } from "react-redux";
 import { logout } from "../slices/authSlice";
 import { useState } from "react";
 
-const pages = [{ id: 1, name: "Home", url: "/HomePage" }];
+const pages = [
+  { id: 1, name: "Home", url: "/HomePage" },
+  { id: 2, name: "Calendar", url: "/events" },
+];
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
