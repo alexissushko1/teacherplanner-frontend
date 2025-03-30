@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import AddMyEventForm from "./AddEventForm";
 
-// Redux hook for fetching events
 import { useGetMyEventsQuery } from "../../slices/eventsSlice";
 import EventDetailsModal from "./EventModal";
 
@@ -21,6 +21,9 @@ export default function Events() {
 
   // State for selected event
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [addMyEventModalOpen, setAddMyEventModalOpen] = useState(false);
+
+  console.log("fetched events: ", eventsData);
 
   // Format events for the calendar (convert to Date objects)
   const formatEventsForCalendar = (events) => {
@@ -68,11 +71,20 @@ export default function Events() {
     </div>
   );
 
+  const openMyEventModal = () => {
+    setAddMyEventModalOpen(true);
+  };
+
+  const closeAddMyEventModal = () => {
+    setAddMyEventModalOpen(false);
+  };
+
   return (
     <div className="events-page">
       <div className="events-header">
         <h1>My Events</h1>
         <input type="text" placeholder="Search Events" />
+        <button onClick={openMyEventModal}>Add New Event</button>
       </div>
       {content}
 
@@ -81,6 +93,10 @@ export default function Events() {
           event={selectedEvent}
           closeModal={() => setSelectedEvent(null)}
         />
+      )}
+
+      {addMyEventModalOpen && (
+        <AddMyEventForm closeModal={closeAddMyEventModal} />
       )}
     </div>
   );
