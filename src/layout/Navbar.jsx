@@ -8,6 +8,7 @@ import { useState } from "react";
 const pages = [
   { id: 1, name: "Home", url: "/HomePage" },
   { id: 2, name: "Calendar", url: "/events" },
+  { id: 3, name: "Personal Passwords", url: "/personalPasswords" },
 ];
 
 function Navbar() {
