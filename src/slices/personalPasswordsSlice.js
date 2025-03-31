@@ -12,6 +12,15 @@ const myPersonalPasswordsApi = api.injectEndpoints({
       transformResponse: (response) => response,
       providesTags: ["MyPersonalPassword"],
     }),
+    addMyPersonalPassword: build.mutation({
+      query: (myPersonalPassword) => ({
+        url: `/api/personalPasswords/password/`,
+        method: "POST",
+        body: myPersonalPassword,
+      }),
+      transformResponse: (response) => response,
+      invalidatesTags: ["MyPersonalPassword"],
+    }),
     updateMyPersonalPassword: build.mutation({
       query: ({ id, ...myPersonalPassword }) => ({
         url: `/api/personalPasswords/password/${id}`,
@@ -33,6 +42,7 @@ const myPersonalPasswordsApi = api.injectEndpoints({
 export const {
   useGetMyPersonalPasswordsQuery,
   useGetMyPersonalPasswordQuery,
+  useAddMyPersonalPasswordMutation,
   useUpdateMyPersonalPasswordMutation,
   useDeleteMyPersonalPasswordMutation,
 } = myPersonalPasswordsApi;

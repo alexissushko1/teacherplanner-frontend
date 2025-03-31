@@ -4,6 +4,7 @@ import Root from "./layout/Root";
 import AuthForm from "./components/auth/AuthForm";
 import Login from "./components/auth/AuthForm";
 import Events from "./components/events/Events";
+import PersonalPasswords from "./components/passwords/PersonalPasswords";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: "/auth", element: <AuthForm /> },
       { path: "/users/login", element: <Login /> },
       { path: "/events", element: <Events /> },
+      { path: "/personalPasswords", element: <PersonalPasswords /> },
     ],
   },
 ]);
