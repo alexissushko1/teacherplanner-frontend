@@ -4,6 +4,7 @@ import "../../css/PersonalPasswords.css";
 
 import { useGetMyPersonalPasswordsQuery } from "../../slices/personalPasswordsSlice";
 import AddPersonalPasswordForm from "./AddPersonalPasswordForm";
+import PersonalPasswordModal from "./UpdatePersonalPasswordForm";
 
 export default function PersonalPasswords() {
   const navigate = useNavigate();
@@ -22,12 +23,35 @@ export default function PersonalPasswords() {
   const [addMyPersonalPasswordModalOpen, setAddMyPersonalPasswordModalOpen] =
     useState(false);
 
+  const [selectedPersonalPassword, setSelectedPersonalPassword] =
+    useState(null);
+
   const openMyPersonalPasswordModal = () => {
     setAddMyPersonalPasswordModalOpen(true);
   };
 
   const closeAddMyPersonalPasswordModal = () => {
     setAddMyPersonalPasswordModalOpen(false);
+  };
+
+  const [
+    updateMyPersonalPasswordModalOpen,
+    setUpdateMyPersonalPasswordModalOpen,
+  ] = useState(false);
+
+  const openMyUpdatePersonalPasswordModal = (personalPassword) => {
+    if (personalPassword) {
+      console.log("Opening modal: ", personalPassword);
+      setSelectedPersonalPassword(personalPassword);
+      setUpdateMyPersonalPasswordModalOpen(true);
+    } else {
+      console.error("No password or missing id.");
+    }
+  };
+
+  const closeUpdateMyPersonalPasswordModal = () => {
+    setUpdateMyPersonalPasswordModalOpen(false);
+    setSelectedPersonalPassword(null);
   };
 
   if (isLoading) {
@@ -51,6 +75,13 @@ export default function PersonalPasswords() {
               <h2 className="personal-password-accountname">
                 {personalPassword.accountName}
               </h2>
+              <button
+                onClick={() =>
+                  openMyUpdatePersonalPasswordModal(personalPassword)
+                }
+              >
+                Update or delete log in info
+              </button>
               <div className="personal-password-description">
                 <h4 className="personal-password-userId">
                   User Id: {personalPassword.userId}
@@ -66,6 +97,14 @@ export default function PersonalPasswords() {
           </div>
         ))}
       </div>
+      {selectedPersonalPassword && (
+        <PersonalPasswordModal
+          personalPassword={selectedPersonalPassword}
+          personalPasswordId={personalPasswords.id}
+          closeModal={closeUpdateMyPersonalPasswordModal}
+        />
+      )}
+
       {addMyPersonalPasswordModalOpen && (
         <AddPersonalPasswordForm
           closeModal={closeAddMyPersonalPasswordModal}

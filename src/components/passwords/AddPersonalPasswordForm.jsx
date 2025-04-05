@@ -87,7 +87,7 @@ export default function AddPersonalPasswordForm({
           </div>
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Adding..." : "Add Event"}
+            {isSubmitting ? "Adding..." : "Add Login Info"}
           </button>
         </form>
         <button onClick={closeModal}>Close</button>
