@@ -9,6 +9,7 @@ const pages = [
   { id: 1, name: "Home", url: "/HomePage" },
   { id: 2, name: "Calendar", url: "/events" },
   { id: 3, name: "Personal Passwords", url: "/personalPasswords" },
+  { id: 4, name: "School Passwords", url: "/schoolpasswords" },
 ];
 
 function Navbar() {
