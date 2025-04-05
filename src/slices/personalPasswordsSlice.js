@@ -34,7 +34,7 @@ const myPersonalPasswordsApi = api.injectEndpoints({
         url: `/api/personalPasswords/password/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["MyPersonalPAssword"],
+      invalidatesTags: ["MyPersonalPassword"],
     }),
   }),
 });

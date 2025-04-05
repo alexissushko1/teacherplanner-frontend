@@ -5,6 +5,8 @@ import AuthForm from "./components/auth/AuthForm";
 import Login from "./components/auth/AuthForm";
 import Events from "./components/events/Events";
 import PersonalPasswords from "./components/passwords/PersonalPasswords";
+import AddPersonalPasswordForm from "./components/passwords/AddPersonalPasswordForm";
+import PersonalPasswordModal from "./components/passwords/UpdatePersonalPasswordForm";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ const router = createBrowserRouter([
       { path: "/users/login", element: <Login /> },
       { path: "/events", element: <Events /> },
       { path: "/personalPasswords", element: <PersonalPasswords /> },
+      { path: "/personalPasswords", element: <AddPersonalPasswordForm /> },
+      { path: "/personalPasswords", element: <PersonalPasswordModal /> },
     ],
   },
 ]);
