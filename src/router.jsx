@@ -7,6 +7,7 @@ import Events from "./components/events/Events";
 import PersonalPasswords from "./components/passwords/PersonalPasswords";
 import AddPersonalPasswordForm from "./components/passwords/AddPersonalPasswordForm";
 import PersonalPasswordModal from "./components/passwords/UpdatePersonalPasswordForm";
+import SchoolPasswords from "./components/passwords/SchoolPasswords";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/personalPasswords", element: <PersonalPasswords /> },
       { path: "/personalPasswords", element: <AddPersonalPasswordForm /> },
       { path: "/personalPasswords", element: <PersonalPasswordModal /> },
+      { path: "/schoolpasswords", element: <SchoolPasswords /> },
     ],
   },
 ]);

@@ -80,7 +80,7 @@ export default function PersonalPasswords() {
                   openMyUpdatePersonalPasswordModal(personalPassword)
                 }
               >
-                Update or delete log in info
+                Update or delete login info
               </button>
               <div className="personal-password-description">
                 <h4 className="personal-password-userId">
@@ -90,7 +90,7 @@ export default function PersonalPasswords() {
                   Username: {personalPassword.username}
                 </h4>
                 <h4 className="personal-password-listedpassword">
-                  {personalPassword.password}
+                  Password: {personalPassword.password}
                 </h4>
               </div>
             </div>
