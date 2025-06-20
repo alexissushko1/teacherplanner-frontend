@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import AddMyEventForm from "./AddEventForm";
 
-import { useGetMyEventsQuery } from "../../slices/eventsSlice";
+import AddMyEventForm from "./AddEventForm";
 import EventDetailsModal from "./EventModal";
+import { useGetMyEventsQuery } from "../../slices/eventsSlice";
 
 // Localizer for the calendar (using moment.js)
 const localizer = momentLocalizer(moment);
@@ -14,18 +14,19 @@ const localizer = momentLocalizer(moment);
 export default function Events() {
   const navigate = useNavigate();
 
-  // Fetching events using the Redux query hook
-  const { data: eventsData, error, isLoading } = useGetMyEventsQuery();
+  // Fetch events using Redux Query
+  const {
+    data: eventsData = [],
+    error,
+    isLoading,
+    refetch,
+  } = useGetMyEventsQuery();
 
-  console.log("Events from backend: ", eventsData);
-
-  // State for selected event
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [addMyEventModalOpen, setAddMyEventModalOpen] = useState(false);
+  const [calendarVersion, setCalendarVersion] = useState(0); // 🆕 Version to force re-render
 
-  console.log("fetched events: ", eventsData);
-
-  // Format events for the calendar (convert to Date objects)
+  // Convert events to calendar format
   const formatEventsForCalendar = (events) => {
     return events.map((event) => {
       const startDate = new Date(event.eventDate);
@@ -41,36 +42,20 @@ export default function Events() {
     });
   };
 
-  // Handle event click on the calendar
+  // Handle calendar event click
   const handleEventClick = (event) => {
     setSelectedEvent(event);
   };
 
-  // Handle loading and error states
-  if (isLoading) {
-    return <div>Loading events...</div>;
-  }
+  // Handle updates or deletions
+  const handleUpdateSuccess = async () => {
+    console.log("Event updated or deleted, refetching...");
+    const result = await refetch();
+    console.log("Refetch complete:", result);
+    setCalendarVersion((prev) => prev + 1); // 🔁 Force calendar re-render
+  };
 
-  if (error) {
-    return <div>Error loading events. Please try again later.</div>;
-  }
-
-  console.log("Formatted Events: ", formatEventsForCalendar(eventsData));
-
-  // If events are available, render the calendar
-  let content = (
-    <div className="calendar-container">
-      <Calendar
-        localizer={localizer}
-        events={formatEventsForCalendar(eventsData)} // Use dynamic data from the backend
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        onSelectEvent={handleEventClick} // Event click handler
-      />
-    </div>
-  );
-
+  // Modal control
   const openMyEventModal = () => {
     setAddMyEventModalOpen(true);
   };
@@ -79,6 +64,11 @@ export default function Events() {
     setAddMyEventModalOpen(false);
   };
 
+  if (isLoading) return <div>Loading events...</div>;
+  if (error) return <div>Error loading events. Please try again later.</div>;
+
+  const formattedEvents = formatEventsForCalendar(eventsData);
+
   return (
     <div className="events-page">
       <div className="events-header">
@@ -86,12 +76,25 @@ export default function Events() {
         <input type="text" placeholder="Search Events" />
         <button onClick={openMyEventModal}>Add New Event</button>
       </div>
-      {content}
+
+      <div className="calendar-container">
+        <Calendar
+          key={calendarVersion} // 🆕 Force re-render when version changes
+          localizer={localizer}
+          events={formattedEvents}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }}
+          onSelectEvent={handleEventClick}
+        />
+      </div>
 
       {selectedEvent && (
         <EventDetailsModal
           event={selectedEvent}
           closeModal={() => setSelectedEvent(null)}
+          onUpdateSuccess={handleUpdateSuccess}
+          onDeleteSuccess={handleUpdateSuccess}
         />
       )}
 
