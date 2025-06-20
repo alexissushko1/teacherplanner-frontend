@@ -24,7 +24,7 @@ export default function Events() {
 
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [addMyEventModalOpen, setAddMyEventModalOpen] = useState(false);
-  const [calendarVersion, setCalendarVersion] = useState(0); // 🆕 Version to force re-render
+  const [calendarVersion, setCalendarVersion] = useState(0); // Version to force re-render
 
   // Convert events to calendar format
   const formatEventsForCalendar = (events) => {
@@ -49,10 +49,8 @@ export default function Events() {
 
   // Handle updates or deletions
   const handleUpdateSuccess = async () => {
-    console.log("Event updated or deleted, refetching...");
     const result = await refetch();
-    console.log("Refetch complete:", result);
-    setCalendarVersion((prev) => prev + 1); // 🔁 Force calendar re-render
+    setCalendarVersion((prev) => prev + 1); //Force calendar re-render
   };
 
   // Modal control
@@ -79,7 +77,7 @@ export default function Events() {
 
       <div className="calendar-container">
         <Calendar
-          key={calendarVersion} // 🆕 Force re-render when version changes
+          key={calendarVersion} //Force re-render when version changes
           localizer={localizer}
           events={formattedEvents}
           startAccessor="start"

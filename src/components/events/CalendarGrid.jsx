@@ -10,11 +10,11 @@ export default function ParentComponent() {
   const handleCloseModal = () => setSelectedEvent(null);
 
   const handleUpdateSuccess = () => {
-    refetch(); // 🔄 Refresh the list after update
+    refetch();
   };
 
   const handleDeleteSuccess = () => {
-    refetch(); // 🔄 Refresh the list after deletion
+    refetch();
   };
 
   if (isLoading) return <p>Loading events...</p>;
