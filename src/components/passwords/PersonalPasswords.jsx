@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/PersonalPasswords.css";
+import "../../css/PersonalPasswordsModal.css";
 
 import { useGetMyPersonalPasswordsQuery } from "../../slices/personalPasswordsSlice";
 import AddPersonalPasswordForm from "./AddPersonalPasswordForm";
@@ -102,6 +103,7 @@ export default function PersonalPasswords() {
           personalPassword={selectedPersonalPassword}
           personalPasswordId={personalPasswords.id}
           closeModal={closeUpdateMyPersonalPasswordModal}
+          onUpdateSuccess={closeUpdateMyPersonalPasswordModal}
         />
       )}
 
