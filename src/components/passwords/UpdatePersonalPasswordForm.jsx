@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import toastr from "toastr";
-import { useDeleteMyPersonalPasswordMutation } from "../../slices/personalPasswordsSlice";
+import {
+  useDeleteMyPersonalPasswordMutation,
+  useUpdateMyPersonalPasswordMutation,
+  useGetMyPersonalPasswordsQuery,
+} from "../../slices/personalPasswordsSlice";
 
 export default function PersonalPasswordModal({
   personalPassword,
   closeModal,
+  onDeleteSuccess,
+  onUpdateSuccess,
 }) {
   const { accountName, username, password, userId, id } = personalPassword;
+
+  const [editMode, setEditMode] = useState(false);
+  const [newAccountName, setNewAccountName] = useState(accountName);
+  const [newUsername, setNewUsername] = useState(username);
+  const [newPassword, setNewPassword] = useState(password);
+  const [newUserId, setNewUserId] = useState(userId);
+  const [UpdatePersonalPassword] = useUpdateMyPersonalPasswordMutation();
 
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [deletePersonalPassword, { isLoading, isError, isSuccess }] =
@@ -52,16 +65,95 @@ export default function PersonalPasswordModal({
     setShowConfirmDelete(false);
   };
 
+  const handleEditClick = () => setEditMode(true);
+
+  const handleCancelEdit = () => {
+    setEditMode(false);
+    setNewAccountName(accountName);
+    setNewUsername(username);
+    setNewPassword(password);
+    setNewUserId(userId);
+  };
+
+  const handleSave = async () => {
+    try {
+      const result = await UpdatePersonalPassword({
+        id,
+        userId: newUserId,
+        accountName: newAccountName,
+        username: newUsername,
+        password: newPassword,
+      }).unwrap();
+      console.log("Update result:", result);
+      onUpdateSuccess?.();
+      toastr.success("Password updated.");
+      setEditMode(false);
+      onUpdateSuccess?.();
+      closeModal();
+    } catch (e) {
+      console.error("Error:", e);
+      toastr.error("Update failed. Try again.");
+    }
+  };
+
   return (
     <div className="personalpassword-modal">
       <div className="personalpassword-modal-content">
-        <h3>{accountName}</h3>
-        <h3>{userId}</h3>
-        <p>{username}</p>
-        <p>{password}</p>
-        <button onClick={handleDelete}>Delete Information</button>
-        <button onClick={closeModal}>Close</button>
+        <div className="personalpassword-modal-header">
+          <h3>
+            {editMode ? (
+              <label>
+                Name:
+                <input
+                  type="text"
+                  value={newAccountName}
+                  onChange={(e) => setNewAccountName(e.target.value)}
+                />
+              </label>
+            ) : (
+              accountName
+            )}
+          </h3>
+          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+        </div>
+        <p>
+          <label>Username: </label>
+          {editMode ? (
+            <input
+              type="text"
+              value={newUsername}
+              onChange={(e) => setNewUsername(e.target.value)}
+            />
+          ) : (
+            username
+          )}
+        </p>
+        <p>
+          <label>Password: </label>
+          {editMode ? (
+            <input
+              type="text"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          ) : (
+            password
+          )}
+        </p>
 
+        <div className="modal-footer">
+          {editMode ? (
+            <>
+              <button onClick={handleSave}>Save</button>
+              <button onClick={handleCancelEdit}>Cancel</button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleDelete}>Delete Password</button>
+              <button onClick={closeModal}>Close</button>
+            </>
+          )}
+        </div>
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
