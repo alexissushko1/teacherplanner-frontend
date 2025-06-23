@@ -91,11 +91,14 @@ export default function EventDetailsModal({
         <div className="modal-header">
           <h3>
             {editMode ? (
-              <input
-                type="text"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-              />
+              <label>
+                Event Name:
+                <input
+                  type="text"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                />
+              </label>
             ) : (
               eventName
             )}
@@ -104,6 +107,7 @@ export default function EventDetailsModal({
         </div>
 
         <p>
+          <label>Description: </label>
           {editMode ? (
             <input
               type="text"
