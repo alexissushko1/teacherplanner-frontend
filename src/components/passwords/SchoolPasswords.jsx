@@ -6,6 +6,7 @@ import AddSchoolPasswordForm from "./AddSchoolPasswordForm";
 import SchoolPasswordModal from "./UpdateSchoolPasswordForm";
 
 import "../../css/SchoolPasswords.css";
+import "../../css/SchoolPasswordsModal.css";
 
 export default function SchoolPasswords() {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ export default function SchoolPasswords() {
                   Password: {schoolPassword.password}
                 </h4>
                 <h4 className="school-password-isteacher">
-                  Is Teacher: {schoolPassword.isTeacher}
+                  Is Teacher: {schoolPassword.isTeacher ? "Yes" : "No"}
                 </h4>
               </div>
             </div>
