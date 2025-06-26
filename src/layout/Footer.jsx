@@ -1,10 +1,10 @@
 import React from "react";
+import "../css/Footer.css";
 
 function Footer() {
   return (
     <>
-      <div>
-        <h1>Teacher Planner</h1>
+      <div className="footer">
         <p>Email: alexis.sushko@gmail.com</p>
         <p>LinkedIn: https://www.linkedin.com/in/alexis-sushko/</p>
         <p>GitHub: https://github.com/alexissushko1</p>

@@ -1,0 +1,22 @@
+body {
+  background: #eeaeca;
+  background: linear-gradient(
+    rgba(238, 174, 184, 0.44) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: grid;
+  margin: 0;
+  height: 100vh;
+  place-items: center;
+  position: relative;
+}
+
+.planner-title {
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8em;
+  text-align: center;
+}
