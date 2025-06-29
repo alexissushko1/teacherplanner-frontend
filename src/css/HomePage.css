@@ -1,22 +1,64 @@
+/* Background and base layout */
 body {
-  background: #eeaeca;
   background: linear-gradient(
     rgba(238, 174, 184, 0.44) 0%,
     rgba(148, 187, 233, 1) 100%
   );
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  display: grid;
   margin: 0;
   height: 100vh;
-  place-items: center;
+}
+
+/* Centers content */
+.homepage-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
   position: relative;
 }
 
+/* Wraps the title and allows positioning relative to it */
+.title-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Title text style */
 .planner-title {
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 8em;
   text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+/* Floating images around the title */
+.floating-paperclip-image {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  transition: transform 0.8s ease-in-out;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.floating-paperclip-image:hover {
+  transform: rotate(360deg);
+}
+
+.floating-paperclip-image {
+  width: 20%;
+}
+
+.floating-paperclip-image.flipped {
+  transform: scaleX(-1);
+}
+
+.floating-paperclip-image.flipped:hover {
+  transform: scaleX(-1) rotate(360deg);
 }
