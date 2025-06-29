@@ -6,7 +6,9 @@ export default function Root() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div style={{ paddingTop: "7em" }}>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

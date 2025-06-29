@@ -7,3 +7,18 @@
   text-align: center;
   border-bottom: solid white;
 }
+
+.navbar-toggler {
+  transition: background-color 0.2s ease;
+}
+
+.navbar-toggler-icon {
+  transition: background-color 0.2s ease;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  background-color: #b3dafe;
+  border-radius: 4px;
+}
