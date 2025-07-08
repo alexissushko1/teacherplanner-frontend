@@ -24,9 +24,7 @@ function AppNavbar() {
     page.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
   const handlePageSelection = (url) => {
     navigate(url);
@@ -45,110 +43,92 @@ function AppNavbar() {
         <a className="navbar-brand" href="#">
           Teacher Planner
         </a>
+
         <button
-          className="navbar-toggler mb-3"
+          className="navbar-toggler"
           type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasLightNavbar"
-          aria-controls="offcanvasLightNavbar"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div
-          className="offcanvas offcanvas-end bg-light"
-          tabIndex="-1"
-          id="offcanvasLightNavbar"
-          aria-labelledby="offcanvasLightNavbarLabel"
-        >
-          <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasLightNavbarLabel">
-              Navigation
-            </h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
+        <div className="collapse navbar-collapse" id="navbarContent">
+          <div className="navbar-search-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search pages..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={() => setIsDropdownVisible(true)}
+              onBlur={() => setTimeout(() => setIsDropdownVisible(false), 200)}
+              aria-label="Search pages"
+            />
+            {searchQuery && isDropdownVisible && (
+              <ul
+                className="list-group position-absolute w-100 mt-1"
+                style={{ zIndex: 1050 }}
+              >
+                {filteredPages.length ? (
+                  filteredPages.map((page) => (
+                    <li
+                      key={page.id}
+                      className="list-group-item list-group-item-action"
+                      onClick={() => handlePageSelection(page.url)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {page.name}
+                    </li>
+                  ))
+                ) : (
+                  <li className="list-group-item disabled">No results</li>
+                )}
+              </ul>
+            )}
           </div>
 
-          <div className="offcanvas-body">
-            {/* Search input */}
-            <div className="mb-3 position-relative">
-              <input
-                type="text"
-                className="form-control me-2"
-                placeholder="Search pages..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                onFocus={() => setIsDropdownVisible(true)}
-                onBlur={() =>
-                  setTimeout(() => setIsDropdownVisible(false), 200)
-                }
-                aria-label="Search pages"
-              />
-              {searchQuery && isDropdownVisible && (
-                <ul
-                  className="list-group mt-2 position-absolute w-100"
-                  style={{ zIndex: 1050 }}
-                >
-                  {filteredPages.length ? (
-                    filteredPages.map((page) => (
-                      <li
-                        key={page.id}
-                        className="list-group-item list-group-item-action"
-                        onClick={() => handlePageSelection(page.url)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {page.name}
-                      </li>
-                    ))
-                  ) : (
-                    <li className="list-group-item disabled">No results</li>
-                  )}
-                </ul>
-              )}
-            </div>
+          {/* NAV LINKS & LOGIN/LOGOUT */}
+          <ul className="navbar-nav ms-auto d-flex align-items-center gap-3">
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/"
+                onClick={() => setSearchQuery("")}
+              >
+                Home
+              </NavLink>
+            </li>
 
-            {/* Navigation Links */}
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/"
-                  onClick={() => setSearchQuery("")}
-                >
-                  Home
+            {pages.map((page) => (
+              <li className="nav-item" key={page.id}>
+                <NavLink className="nav-link" to={page.url}>
+                  {page.name}
                 </NavLink>
               </li>
+            ))}
 
-              {pages.map((page) => (
-                <li className="nav-item" key={page.id}>
-                  <NavLink className="nav-link" to={page.url}>
-                    {page.name}
-                  </NavLink>
-                </li>
-              ))}
-
-              {/* Auth buttons */}
-              <li className="nav-item mt-3">
-                {token ? (
-                  <button
-                    onClick={attemptLogout}
-                    className="btn btn-danger w-100"
-                  >
-                    Log Out
-                  </button>
-                ) : (
-                  <NavLink to="/users/login" className="btn btn-success w-100">
-                    Log In
-                  </NavLink>
-                )}
-              </li>
-            </ul>
-          </div>
+            <li className="nav-item">
+              {token ? (
+                <button
+                  onClick={attemptLogout}
+                  className="btn btn-login-custom d-flex align-items-center"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <NavLink
+                  to="/users/login"
+                  className="btn btn-login-custom d-flex align-items-center"
+                >
+                  Log In
+                </NavLink>
+              )}
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
