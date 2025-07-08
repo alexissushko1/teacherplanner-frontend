@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
 //import toastr from "toastr";
+import "../../css/AuthForm.css";
 
 export default function AuthForm() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function AuthForm() {
     <>
       <div className="authContainer">
         <div className="auth">
-          <h1>{authAction}</h1>
+          <h1 className="authAction">{authAction}</h1>
           <form onSubmit={attemptAuth}>
             <div className="usernameContainer">
               <label className="username">
