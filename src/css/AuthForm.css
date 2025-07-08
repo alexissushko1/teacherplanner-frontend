@@ -1,0 +1,59 @@
+.authAction {
+  text-align: center;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8em;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0.5em;
+}
+
+.usernameContainer,
+.emailContainer {
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+.passwordContainer {
+  text-align: center;
+  padding-bottom: 4em;
+}
+
+.username,
+.email,
+.password {
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.passwordText,
+.usernameText {
+  margin-left: 1em;
+}
+
+.emailText {
+  margin-left: 2.7em;
+}
+
+.loginButton {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: white;
+  color: rgb(191, 127, 255);
+  border-radius: 30px;
+  width: 20em;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+}
+
+.loginNote {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: rgb(191, 127, 255);
+}

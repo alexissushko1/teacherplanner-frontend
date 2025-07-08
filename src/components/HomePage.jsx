@@ -7,7 +7,7 @@ function HomePage() {
   const positions = [
     { top: "-12em", left: "-12em" },
     { top: "-2em", left: "80em" },
-    { top: "25em", left: "20em" },
+    { top: "21em", left: "20em" },
   ];
 
   return (
