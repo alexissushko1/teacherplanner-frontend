@@ -1,5 +1,13 @@
+/* Base box model for all elements */
+* {
+  box-sizing: border-box;
+}
+
 /* Background and base layout */
 body {
+  margin: 0;
+  height: 100vh;
+  overflow-x: hidden;
   background: linear-gradient(
     rgba(238, 174, 184, 0.44) 0%,
     rgba(148, 187, 233, 1) 100%
@@ -7,52 +15,48 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  margin: 0;
-  height: 100vh;
 }
 
-/* Centers content */
+/* Centers main content below fixed header */
 .homepage-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 60px);
+  width: 100%;
+  padding-top: 60px;
   position: relative;
+  overflow: hidden;
 }
 
-/* Wraps the title and allows positioning relative to it */
+/* Wrapper for the title */
 .title-wrapper {
   position: relative;
   display: inline-block;
+  text-align: center;
 }
 
-/* Title text style */
+/* Title style */
 .planner-title {
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 8em;
-  text-align: center;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 
-/* Floating images around the title */
+/* Floating images */
 .floating-paperclip-image {
   position: absolute;
-  width: 80px;
+  width: 20%;
   height: auto;
-  transition: transform 0.8s ease-in-out;
-  cursor: pointer;
   z-index: 0;
+  cursor: pointer;
+  transition: transform 0.8s ease-in-out;
 }
 
 .floating-paperclip-image:hover {
   transform: rotate(360deg);
-}
-
-.floating-paperclip-image {
-  width: 20%;
 }
 
 .floating-paperclip-image.flipped {
