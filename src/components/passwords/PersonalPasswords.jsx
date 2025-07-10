@@ -10,22 +10,21 @@ import PersonalPasswordModal from "./UpdatePersonalPasswordForm";
 export default function PersonalPasswords() {
   const navigate = useNavigate();
 
-  //Fetching personal passwords using Redux query hook
+  // Fetching passwords using Redux query
   const {
     data: personalPasswords = [],
     error,
     isLoading,
   } = useGetMyPersonalPasswordsQuery();
 
-  console.log("Personal Passwords from backend: ", personalPasswords);
-
-  console.log("Fetched events: ", personalPasswords);
-
   const [addMyPersonalPasswordModalOpen, setAddMyPersonalPasswordModalOpen] =
     useState(false);
-
   const [selectedPersonalPassword, setSelectedPersonalPassword] =
     useState(null);
+  const [
+    updateMyPersonalPasswordModalOpen,
+    setUpdateMyPersonalPasswordModalOpen,
+  ] = useState(false);
 
   const openMyPersonalPasswordModal = () => {
     setAddMyPersonalPasswordModalOpen(true);
@@ -35,18 +34,12 @@ export default function PersonalPasswords() {
     setAddMyPersonalPasswordModalOpen(false);
   };
 
-  const [
-    updateMyPersonalPasswordModalOpen,
-    setUpdateMyPersonalPasswordModalOpen,
-  ] = useState(false);
-
   const openMyUpdatePersonalPasswordModal = (personalPassword) => {
     if (personalPassword) {
-      console.log("Opening modal: ", personalPassword);
       setSelectedPersonalPassword(personalPassword);
       setUpdateMyPersonalPasswordModalOpen(true);
     } else {
-      console.error("No password or missing id.");
+      console.error("No password or missing ID.");
     }
   };
 
@@ -65,54 +58,61 @@ export default function PersonalPasswords() {
 
   return (
     <div className="personal-passwords-page">
-      <div className="personal-passwords-header">
-        <h1>Personal Passwords</h1>
-      </div>
-      <button onClick={openMyPersonalPasswordModal}>Add new password</button>
-      <div>
-        {personalPasswords.map((personalPassword) => (
-          <div className="personal-password-note" key={personalPassword.id}>
-            <div className="personal-password-details">
-              <h2 className="personal-password-accountname">
-                {personalPassword.accountName}
-              </h2>
-              <button
-                onClick={() =>
-                  openMyUpdatePersonalPasswordModal(personalPassword)
-                }
-              >
-                Update or delete login info
-              </button>
-              <div className="personal-password-description">
-                <h4 className="personal-password-userId">
-                  User Id: {personalPassword.userId}
-                </h4>
-                <h4 className="personal-password-username">
-                  Username: {personalPassword.username}
-                </h4>
-                <h4 className="personal-password-listedpassword">
-                  Password: {personalPassword.password}
-                </h4>
+      <div className="personal-passwords-container">
+        <div className="personal-passwords-header">
+          <h1>Personal Passwords</h1>
+          <button className="addButton" onClick={openMyPersonalPasswordModal}>
+            Add new password
+          </button>
+        </div>
+
+        <div className="personal-password-list">
+          {personalPasswords.map((personalPassword) => (
+            <div className="personal-password-note" key={personalPassword.id}>
+              <div className="personal-password-details">
+                <h2 className="personal-password-accountname">
+                  {personalPassword.accountName}
+                </h2>
+                <div className="personal-password-description">
+                  <h4 className="personal-password-userId">
+                    User Id: {personalPassword.userId}
+                  </h4>
+                  <h4 className="personal-password-username">
+                    Username: {personalPassword.username}
+                  </h4>
+                  <h4 className="personal-password-listedpassword">
+                    Password: {personalPassword.password}
+                  </h4>
+                </div>
+                <button
+                  className="updateButton"
+                  onClick={() =>
+                    openMyUpdatePersonalPasswordModal(personalPassword)
+                  }
+                >
+                  Update or delete login info
+                </button>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      {selectedPersonalPassword && (
-        <PersonalPasswordModal
-          personalPassword={selectedPersonalPassword}
-          personalPasswordId={personalPasswords.id}
-          closeModal={closeUpdateMyPersonalPasswordModal}
-          onUpdateSuccess={closeUpdateMyPersonalPasswordModal}
-        />
-      )}
+          ))}
+        </div>
 
-      {addMyPersonalPasswordModalOpen && (
-        <AddPersonalPasswordForm
-          closeModal={closeAddMyPersonalPasswordModal}
-          personalPasswordId={personalPasswords.id}
-        />
-      )}
+        {selectedPersonalPassword && (
+          <PersonalPasswordModal
+            personalPassword={selectedPersonalPassword}
+            personalPasswordId={selectedPersonalPassword.id}
+            closeModal={closeUpdateMyPersonalPasswordModal}
+            onUpdateSuccess={closeUpdateMyPersonalPasswordModal}
+          />
+        )}
+
+        {addMyPersonalPasswordModalOpen && (
+          <AddPersonalPasswordForm
+            closeModal={closeAddMyPersonalPasswordModal}
+            personalPasswordId={null}
+          />
+        )}
+      </div>
     </div>
   );
 }
