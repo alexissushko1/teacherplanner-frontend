@@ -6,6 +6,8 @@ import {
   useGetMySchoolPasswordsQuery,
 } from "../../slices/schoolPasswordsSlice";
 
+import "../../css/SchoolPasswordsModal.css";
+
 export default function SchoolPasswordModal({
   schoolPassword,
   closeModal,
@@ -106,7 +108,7 @@ export default function SchoolPasswordModal({
         <div className="schoolpassword-modal-header">
           <h3>
             {editMode ? (
-              <label>
+              <label className="accountName">
                 Name:
                 <input
                   type="text"
@@ -118,13 +120,18 @@ export default function SchoolPasswordModal({
               accountName
             )}
           </h3>
-          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+          {!editMode && (
+            <button className="editAccountButton" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
         </div>
         <p>
-          <label>Username: </label>
+          <label className="usernameLabel">Username: </label>
           {editMode ? (
             <input
               type="text"
+              className="usernameInput"
               value={newUsername}
               onChange={(e) => setNewUsername(e.target.value)}
             />
@@ -133,10 +140,11 @@ export default function SchoolPasswordModal({
           )}
         </p>
         <p>
-          <label>Password: </label>
+          <label className="passwordLabel">Password: </label>
           {editMode ? (
             <input
               type="text"
+              className="passwordInput"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -148,9 +156,10 @@ export default function SchoolPasswordModal({
           <label>Are you a teacher? </label>
           {editMode ? (
             <div>
-              <label>
+              <label className="isTeacherLabel">
                 <input
                   type="radio"
+                  className="isTeacherInput"
                   name="isTeacher"
                   value="true"
                   checked={newIsTeacher === true}
@@ -177,13 +186,21 @@ export default function SchoolPasswordModal({
         <div className="modal-footer">
           {editMode ? (
             <>
-              <button onClick={handleSave}>Save</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button className="save-button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="cancel-button" onClick={handleCancelEdit}>
+                Cancel
+              </button>
             </>
           ) : (
             <>
-              <button onClick={handleDelete}>Delete Password</button>
-              <button onClick={closeModal}>Close</button>
+              <button className="deleteButton" onClick={handleDelete}>
+                Delete Password
+              </button>
+              <button className="closeDeleteButton" onClick={closeModal}>
+                Close
+              </button>
             </>
           )}
         </div>

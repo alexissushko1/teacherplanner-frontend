@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toastr from "toastr";
 import { useAddMyPersonalPasswordMutation } from "../../slices/personalPasswordsSlice";
 import PersonalPasswords from "./PersonalPasswords";
+import "../../css/AddPersonalPasswordsModal.css";
 
 export default function AddPersonalPasswordForm({
   closeModal,
@@ -54,11 +55,15 @@ export default function AddPersonalPasswordForm({
         <h3>Add Personal Password</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor={`accountName-${personalPasswordId}`}>
-              Account Name
+            <label
+              className="accountname-label"
+              htmlFor={`accountName-${personalPasswordId}`}
+            >
+              Account Name:
             </label>
             <input
               type="text"
+              className="accountname-input"
               id={`accountName-${personalPasswordId}`}
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
@@ -67,8 +72,15 @@ export default function AddPersonalPasswordForm({
           </div>
 
           <div className="form-group">
-            <label htmlFor={`username-${personalPasswordId}`}>Username</label>
-            <textarea
+            <label
+              className="username-label"
+              htmlFor={`username-${personalPasswordId}`}
+            >
+              Username:{" "}
+            </label>
+            <input
+              type="text"
+              className="username-input"
               id={`username-${personalPasswordId}`}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -77,20 +89,33 @@ export default function AddPersonalPasswordForm({
           </div>
 
           <div className="form-group">
-            <label htmlFor={`password-${personalPasswordId}`}> Password</label>
-            <textarea
+            <label
+              className="password-label"
+              htmlFor={`password-${personalPasswordId}`}
+            >
+              {" "}
+              Password:{" "}
+            </label>
+            <input
+              className="password-input"
+              type="text"
               id={`password-${personalPasswordId}`}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="add-password-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Adding..." : "Add Login Info"}
           </button>
+          <button className="add-password-close-button" onClick={closeModal}>
+            Close
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </div>
     </div>
   );

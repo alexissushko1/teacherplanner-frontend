@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toastr from "toastr";
 import { useAddMySchoolPasswordMutation } from "../../slices/schoolPasswordsSlice";
 import SchoolPasswords from "./SchoolPasswords";
+import "../../css/AddSchoolPasswordsModal.css";
 
 export default function AddSchoolPasswordForm({
   closeModal,
@@ -65,11 +66,15 @@ export default function AddSchoolPasswordForm({
         <h3>Add School Password</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor={`accountName-${schoolPasswordId}`}>
+            <label
+              className="accountname-label"
+              htmlFor={`accountName-${schoolPasswordId}`}
+            >
               Account Name
             </label>
             <input
               type="text"
+              className="accountname-input"
               id={`accountName-${schoolPasswordId}`}
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
@@ -78,8 +83,15 @@ export default function AddSchoolPasswordForm({
           </div>
 
           <div className="form-group">
-            <label htmlFor={`username-${schoolPasswordId}`}>Username</label>
-            <textarea
+            <label
+              className="username-label"
+              htmlFor={`username-${schoolPasswordId}`}
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              className="username-input"
               id={`username-${schoolPasswordId}`}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -88,8 +100,16 @@ export default function AddSchoolPasswordForm({
           </div>
 
           <div className="form-group">
-            <label htmlFor={`password-${schoolPasswordId}`}> Password</label>
-            <textarea
+            <label
+              className="password-label"
+              htmlFor={`password-${schoolPasswordId}`}
+            >
+              {" "}
+              Password
+            </label>
+            <input
+              type="text"
+              className="password-input"
               id={`password-${schoolPasswordId}`}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -98,34 +118,47 @@ export default function AddSchoolPasswordForm({
           </div>
 
           <div className="form-group">
-            <label htmlFor={`isTeacher-${schoolPasswordId}`}>
-              Are you a teacher?
-            </label>
-            <input
-              type="radio"
-              name={`isTeacher-${schoolPasswordId}`}
-              value={true}
-              checked={isTeacher === true}
-              onChange={() => setIsTeacher(true)} // Set isTeacher to true when selected
-            />
-            Yes
+            <div className="teacher-wrapper">
+              <label
+                className="isteacher-label"
+                htmlFor={`isTeacher-${schoolPasswordId}`}
+              >
+                Are you a teacher?
+              </label>
+              <input
+                type="radio"
+                className="isteacher-yes-input"
+                name={`isTeacher-${schoolPasswordId}`}
+                value={true}
+                checked={isTeacher === true}
+                onChange={() => setIsTeacher(true)} // Set isTeacher to true when selected
+              />
+              Yes
+              <label className="isteacher-no-input-label">
+                <input
+                  type="radio"
+                  className="isteacher-no-input"
+                  name={`isTeacher-${schoolPasswordId}`}
+                  value={false}
+                  checked={isTeacher === false}
+                  onChange={() => setIsTeacher(false)} // Set isTeacher to false when selected
+                />
+                No
+              </label>
+            </div>
           </div>
-          <label>
-            <input
-              type="radio"
-              name={`isTeacher-${schoolPasswordId}`}
-              value={false}
-              checked={isTeacher === false}
-              onChange={() => setIsTeacher(false)} // Set isTeacher to false when selected
-            />
-            No
-          </label>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="add-password-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Adding..." : "Add Login Info"}
           </button>
+          <button className="add-password-close-button" onClick={closeModal}>
+            Close
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </div>
     </div>
   );

@@ -70,9 +70,11 @@ export default function PersonalPasswords() {
           {personalPasswords.map((personalPassword) => (
             <div className="personal-password-note" key={personalPassword.id}>
               <div className="personal-password-details">
-                <h2 className="personal-password-accountname">
-                  {personalPassword.accountName}
-                </h2>
+                <div className="personal-password-header">
+                  <h2 className="personal-password-accountname">
+                    {personalPassword.accountName}
+                  </h2>
+                </div>
                 <div className="personal-password-description">
                   <h4 className="personal-password-userId">
                     User Id: {personalPassword.userId}
