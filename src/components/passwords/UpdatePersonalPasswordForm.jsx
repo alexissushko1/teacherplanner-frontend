@@ -102,7 +102,7 @@ export default function PersonalPasswordModal({
         <div className="personalpassword-modal-header">
           <h3>
             {editMode ? (
-              <label>
+              <label className="accountName">
                 Name:
                 <input
                   type="text"
@@ -114,13 +114,18 @@ export default function PersonalPasswordModal({
               accountName
             )}
           </h3>
-          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+          {!editMode && (
+            <button className="editAccountButton" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
         </div>
         <p>
-          <label>Username: </label>
+          <label className="usernameLabel">Username: </label>
           {editMode ? (
             <input
               type="text"
+              className="usernameInput"
               value={newUsername}
               onChange={(e) => setNewUsername(e.target.value)}
             />
@@ -129,10 +134,11 @@ export default function PersonalPasswordModal({
           )}
         </p>
         <p>
-          <label>Password: </label>
+          <label className="passwordLabel">Password: </label>
           {editMode ? (
             <input
               type="text"
+              className="passwordInput"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -144,13 +150,21 @@ export default function PersonalPasswordModal({
         <div className="modal-footer">
           {editMode ? (
             <>
-              <button onClick={handleSave}>Save</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button className="save-button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="cancel-button" onClick={handleCancelEdit}>
+                Cancel
+              </button>
             </>
           ) : (
             <>
-              <button onClick={handleDelete}>Delete Password</button>
-              <button onClick={closeModal}>Close</button>
+              <button className="deleteButton" onClick={handleDelete}>
+                Delete Password
+              </button>
+              <button className="closeDeleteButton" onClick={closeModal}>
+                Close
+              </button>
             </>
           )}
         </div>
