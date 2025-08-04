@@ -11,6 +11,7 @@ const pages = [
   { id: 2, name: "Calendar", url: "/events" },
   { id: 3, name: "Personal Passwords", url: "/personalPasswords" },
   { id: 4, name: "School Passwords", url: "/schoolpasswords" },
+  { id: 5, name: "To Do Lists", url: "/toDoLists" },
 ];
 
 function AppNavbar() {

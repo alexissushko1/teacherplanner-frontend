@@ -8,6 +8,7 @@ import PersonalPasswords from "./components/passwords/PersonalPasswords";
 import AddPersonalPasswordForm from "./components/passwords/AddPersonalPasswordForm";
 import PersonalPasswordModal from "./components/passwords/UpdatePersonalPasswordForm";
 import SchoolPasswords from "./components/passwords/SchoolPasswords";
+import ToDoLists from "./components/lists/ToDoLists";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/personalPasswords", element: <AddPersonalPasswordForm /> },
       { path: "/personalPasswords", element: <PersonalPasswordModal /> },
       { path: "/schoolpasswords", element: <SchoolPasswords /> },
+      { path: "/toDoLists", element: <ToDoLists /> },
     ],
   },
 ]);
