@@ -1,0 +1,129 @@
+.shoppingAddButton {
+  all: unset;
+  position: relative;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff8a5;
+  padding: 0.75rem;
+  border: 1px solid #f0d000;
+  width: 300px;
+  height: 250px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 2.5em;
+  box-shadow: 3px 3px 0 #faf18d, 6px 6px 0 #f5e774, 9px 9px 0 #f0d000,
+    12px 12px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingAddButton:hover {
+  background: #fdf498; /* Slightly brighter yellow if you want a hover effect */
+  box-shadow: 4px 4px 0 #faf18d, 7px 7px 0 #f5e774, 10px 10px 0 #f0d000,
+    13px 13px 2px rgba(0, 0, 0, 0.2);
+  color: black;
+}
+
+.shoppingAddButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.note-save-edit,
+.note-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.task-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.task-check {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.task-check.checked + span {
+  text-decoration: line-through;
+}
+
+.task-done {
+  text-decoration: line-through;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  font-size: 1rem;
+  width: 100%;
+  padding: 5px;
+  margin-top: 0.5rem;
+  max-width: 90%;
+}
+
+.shopping-list-container {
+  position: relative;
+  height: 200vh;
+  width: 100%;
+}
+
+.shopping-list-header {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  font-size: 6em;
+  color: white;
+}
+
+.shopping-note {
+  background: #fff8a5;
+  padding: 1rem;
+  border: 1px solid #f0d000;
+  width: 300px;
+  min-height: 250px;
+  position: absolute;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.note-save-edit {
+  color: black;
+}
+
+.note-delete {
+  color: black;
+}
+
+.note-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-body > span {
+  margin-right: 20px;
+}
+
+.note-text-body {
+  margin-left: 10px;
+}
+
+.item-symbol {
+  margin-right: 10px;
+  font-size: 1.5em;
+}

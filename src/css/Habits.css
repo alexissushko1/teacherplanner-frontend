@@ -1,0 +1,83 @@
+.habit-chart {
+  width: 70%;
+  border-collapse: collapse;
+  border: 5px solid white;
+  text-align: center;
+  border-radius: 30px;
+  margin: 0 auto;
+}
+
+.habit-chart th,
+.habit-chart td {
+  padding: 0.5em 1em;
+  border: 1px solid white;
+  color: white;
+}
+
+.habit-name-label,
+.habit-frequency-label,
+.habit-progress-check {
+  font-size: 1.5em;
+  border-bottom: 5px solid white;
+  /* Remove padding-right: 15em; as it’s too large */
+}
+
+input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.checkbox-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.checkbox-star {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  user-select: none;
+}
+
+.checkbox-star.checked {
+  color: gold;
+}
+
+.checkbox-star:hover {
+  transform: scale(1.3);
+}
+
+.habits-title {
+  color: white;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 1em;
+  font-size: 3em;
+}
+
+.add-habit-button {
+  background-color: rgba(138, 200, 229, 0.424);
+  border-radius: 15px;
+  border: 2px solid white;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.add-habit-button:hover {
+  background-color: rgba(76, 184, 234, 0.424);
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.habits-header {
+  margin-bottom: 2em;
+  text-align: center;
+}
