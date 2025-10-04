@@ -4,13 +4,13 @@ import "../../css/Habits.css";
 import "../../css/HabitsModal.css";
 
 import { useGetMyHabitsQuery } from "../../slices/habitsSlice";
-// import AddHabitForm from "./AddHabitForm";
-// import UpdateHabitForm from "./UpdateHabitForm";
+import AddHabitForm from "./AddHabitForm";
+import UpdateHabitModal from "./UpdateHabitForm";
 
 export default function Habits() {
   const navigate = useNavigate();
 
-  // Fetching passwords using Redux query
+  // Fetching habits using Redux query
   const { data: habits = [], error, isLoading } = useGetMyHabitsQuery();
 
   const [addMyHabitModalOpen, setAddMyHabitModalOpen] = useState(false);
@@ -31,7 +31,7 @@ export default function Habits() {
       setSelectedHabit(habit);
       setUpdateMyHabitModalOpen(true);
     } else {
-      console.error("No password or missing ID.");
+      console.error("No habit or missing ID.");
     }
   };
 
@@ -88,7 +88,11 @@ export default function Habits() {
           </thead>
           <tbody>
             {habits.map((habit) => (
-              <tr key={habit.id}>
+              <tr
+                key={habit.id}
+                className="habit-row"
+                onClick={() => openMyUpdateHabitModal(habit)}
+              >
                 <td>{habit.habitName}</td>
                 <td>{habit.frequency}</td>
                 <td>
@@ -103,7 +107,10 @@ export default function Habits() {
                           className={`checkbox-star ${
                             isChecked ? "checked" : ""
                           }`}
-                          onClick={() => toggleProgress(habit.id, index)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleProgress(habit.id, index);
+                          }}
                         >
                           {isChecked ? "⭐" : "☆"}
                         </span>
