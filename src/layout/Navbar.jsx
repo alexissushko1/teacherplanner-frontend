@@ -14,6 +14,7 @@ const pages = [
   { id: 5, name: "To Do Lists", url: "/toDoLists" },
   { id: 6, name: "Shopping Lists", url: "/shoppingLists" },
   { id: 7, name: "Habits", url: "/habits" },
+  { id: 8, name: "Chores", url: "/habits/cleaning" },
 ];
 
 function AppNavbar() {

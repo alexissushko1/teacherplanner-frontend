@@ -1,0 +1,61 @@
+.task-chart {
+  width: 70%;
+  border-collapse: collapse;
+  border: 5px solid white;
+  text-align: center;
+  border-radius: 30px;
+  margin: 0 auto;
+}
+
+.task-chart th,
+.task-chart td {
+  padding: 0.5em 1em;
+  border: 1px solid white;
+  color: white;
+}
+
+.task-name-label,
+.habit-progress-check {
+  font-size: 1.5em;
+  border-bottom: 5px solid white;
+  /* Remove padding-right: 15em; as it’s too large */
+}
+
+.tasks-title {
+  color: white;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 1em;
+  font-size: 3em;
+}
+
+.add-task-button {
+  background-color: rgba(138, 200, 229, 0.424);
+  border-radius: 15px;
+  border: 2px solid white;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.add-task-button:hover {
+  background-color: rgba(76, 184, 234, 0.424);
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.tasks-header {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.task-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.task-row:hover {
+  background-color: #f0f0f099; /* light gray on hover */
+}
