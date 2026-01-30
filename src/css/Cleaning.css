@@ -1,61 +1,143 @@
-.task-chart {
-  width: 70%;
-  border-collapse: collapse;
-  border: 5px solid white;
-  text-align: center;
-  border-radius: 30px;
-  margin: 0 auto;
+/* General styles for the tasks page */
+.days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 1em 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1em;
+  border-radius: 10px;
 }
 
-.task-chart th,
-.task-chart td {
-  padding: 0.5em 1em;
+.task-day {
+  background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid white;
-  color: white;
-}
-
-.task-name-label,
-.habit-progress-check {
-  font-size: 1.5em;
-  border-bottom: 5px solid white;
-  /* Remove padding-right: 15em; as it’s too large */
-}
-
-.tasks-title {
+  border-radius: 8px;
+  padding: 0.5em;
   color: white;
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
-  display: inline-block;
-  margin-right: 1em;
-  font-size: 3em;
+}
+
+.quarterly-task-section,
+.monthly-task-section,
+.weekly-task-section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 2em;
+  color: white;
+}
+
+.yearly-task-section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 10em;
+  color: white;
+}
+
+.task-section h4 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid white;
+  padding-bottom: 0.3em;
+}
+
+.monthly-container,
+.quarterly-container,
+.yearly-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.monthly-task,
+.quarterly-task,
+.yearly-task {
+  flex: 1 1 30%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 1em;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .days-of-week {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .monthly-task,
+  .quarterly-task,
+  .yearly-task {
+    flex: 1 1 100%;
+  }
 }
 
 .add-task-button {
-  background-color: rgba(138, 200, 229, 0.424);
-  border-radius: 15px;
-  border: 2px solid white;
-  text-align: center;
-  justify-content: center;
+  background-color: rgba(115, 180, 234, 0.433);
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  color: rgb(157, 203, 245);
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  font-style: italic;
   margin-bottom: 1em;
+  bottom: 3;
+  position: relative;
 }
 
 .add-task-button:hover {
-  background-color: rgba(76, 184, 234, 0.424);
-  border-radius: 10px;
-  border: 2px solid white;
+  background-color: rgba(120, 157, 225, 0.9);
+  box-shadow: 5px 5px 5px rgb(203, 237, 246);
 }
 
+.daily-tasks {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 1.5em;
+  margin-left: 1em;
+}
+
+/* New container for header to center both title and button together */
 .tasks-header {
-  margin-bottom: 2em;
+  display: flex;
+  justify-content: center; /* center the inner container */
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+
+/* Inner container wraps title + button, aligns them center horizontally */
+.tasks-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between title and button */
+}
+
+/* Title styling */
+.tasks-title {
+  color: rgb(158, 146, 238);
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-style: italic;
+  font-size: 3em;
+  margin-right: 1em;
+  white-space: nowrap;
   text-align: center;
+  user-select: none;
 }
 
-.task-row {
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.task-row:hover {
-  background-color: #f0f0f099; /* light gray on hover */
+/* Container for the rest of the tasks page */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
 }

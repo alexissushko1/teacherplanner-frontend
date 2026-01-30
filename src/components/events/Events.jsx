@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "../../css/Events.css";
 
 import AddMyEventForm from "./AddEventForm";
 import EventDetailsModal from "./EventModal";
@@ -70,7 +71,7 @@ export default function Events() {
   return (
     <div className="events-page">
       <div className="events-header">
-        <h1>My Events</h1>
+        <h1 className="my-events-title">My Events</h1>
         <input type="text" placeholder="Search Events" />
         <button onClick={openMyEventModal}>Add New Event</button>
       </div>
