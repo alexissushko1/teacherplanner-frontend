@@ -7,12 +7,13 @@ import {
 
 import "../../css/UpdateCleaning.css";
 
-export default function UpdateTaskModal({
+export default function UpdateCleaningEntryForm({
   task,
   closeModal,
   onDeleteSuccess,
   onUpdateSuccess,
 }) {
+  // Guard to prevent destructuring null or undefined task
   if (!task) return null;
 
   const { userId, taskName, frequency, isCompleted } = task;
@@ -24,16 +25,13 @@ export default function UpdateTaskModal({
   const [newUserId, setNewUserId] = useState(userId);
 
   const [updateTask] = useUpdateMyTaskMutation();
-  const [deleteTask, { isLoading, isError, isSuccess }] =
-    useDeleteMyTaskMutation();
+  const [deleteTask] = useDeleteMyTaskMutation();
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
-  // 🗑️ Delete
   const handleDelete = () => setShowConfirmDelete(true);
 
   const handleConfirmDelete = async () => {
     try {
-      console.log(`Trying to delete task with Id: ${task.id}`);
       await deleteTask(task.id).unwrap();
 
       toastr.success("Task deleted successfully!", {
