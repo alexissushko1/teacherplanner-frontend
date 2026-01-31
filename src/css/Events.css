@@ -1,4 +1,90 @@
 .my-events-title {
   color: white;
   text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.rbc-toolbar-label {
+  font-size: 1.5em;
+  margin-left: 3em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.add-event-button {
+  margin: 2em 0 3em 2em;
+  background-color: rgba(143, 106, 171, 0.5);
+  border-radius: 20px;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.add-event-button:hover {
+  background-color: rgba(143, 106, 171, 0.2);
+}
+
+#search-events-bar {
+  width: 50%;
+  font-size: 1.2em;
+  margin-left: 15%;
+  background-color: rgba(255, 255, 255, 0.905);
+  border-radius: 10px;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.rbc-calendar {
+  width: 75%;
+  justify-content: center;
+  min-height: 40em;
+  margin-left: 10%;
+  border-radius: 500px;
+
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-height: 500px) {
+  .rbc-calendar {
+    min-height: 20em;
+  }
+}
+
+.rbc-toolbar {
+  margin-bottom: 2em;
+}
+
+.rbc-toolbar button {
+  border-width: 3px;
+  box-shadow: 1px 7px 7px rebeccapurple;
+  border-radius: 10px;
+}
+
+.rbc-toolbar button:active:hover,
+.rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:hover,
+.rbc-toolbar button.rbc-active:focus {
+  border-width: 3px;
+  box-shadow: 1px 7px 7px rgb(138, 102, 173);
+  border-radius: 10px;
+}
+
+.rbc-off-range-bg {
+  background-color: rgb(255, 255, 255, 0.3);
+}
+
+.rbc-header {
+  background-color: rgb(195, 234, 246);
+}
+
+.rbc-month-row {
+  background-color: rgba(247, 211, 237, 0.65);
+}
+
+.rbc-month-view {
+  border-width: 12px;
+  border-radius: 10px;
+  border-color: white;
+  border: 3px solid white;
+}
+
+.rbc-day-bg.rbc-today {
+  background-color: rgb(255, 255, 255, 0.3);
 }
