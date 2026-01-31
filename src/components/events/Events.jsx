@@ -72,8 +72,10 @@ export default function Events() {
     <div className="events-page">
       <div className="events-header">
         <h1 className="my-events-title">My Events</h1>
-        <input type="text" placeholder="Search Events" />
-        <button onClick={openMyEventModal}>Add New Event</button>
+        <input id="search-events-bar" type="text" placeholder="Search Events" />
+        <button className="add-event-button" onClick={openMyEventModal}>
+          Add New Event
+        </button>
       </div>
 
       <div className="calendar-container">
