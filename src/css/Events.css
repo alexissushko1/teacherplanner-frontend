@@ -82,9 +82,27 @@
   border-width: 12px;
   border-radius: 10px;
   border-color: white;
-  border: 3px solid white;
 }
 
 .rbc-day-bg.rbc-today {
   background-color: rgb(255, 255, 255, 0.3);
+}
+
+.rbc-time-view {
+  background-color: rgba(247, 211, 237, 0.65);
+  border: 20px solid white;
+  border-radius: 20px;
+}
+
+.rbc-time-header.rbc-overflowing {
+  background-color: rgba(215, 245, 252, 0.4);
+}
+
+.rbc-label.rbc-time-header-gutter {
+  background-color: rgb(194, 211, 243);
+}
+
+.rbc-label {
+  font-family: "Courier New";
+  font-size: 0.9em;
 }
