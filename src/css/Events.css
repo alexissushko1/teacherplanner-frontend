@@ -1,7 +1,9 @@
 .my-events-title {
   color: white;
   text-align: center;
+  display: inline;
   font-family: "Courier New", Courier, monospace;
+  margin-left: 40%;
 }
 
 .rbc-toolbar-label {
@@ -11,10 +13,10 @@
 }
 
 .add-event-button {
-  margin: 2em 0 3em 2em;
+  margin: 1em 0 1em 2em;
   background-color: rgba(143, 106, 171, 0.5);
   border-radius: 20px;
-  padding: 0.2em 0.5em 0.2em 0.5em;
+  padding: 1.2em 0.2em 1.2em 0.5em;
 }
 
 .add-event-button:hover {
@@ -22,9 +24,9 @@
 }
 
 #search-events-bar {
-  width: 50%;
+  width: 80%;
   font-size: 1.2em;
-  margin-left: 15%;
+  margin-left: 20%;
   background-color: rgba(255, 255, 255, 0.905);
   border-radius: 10px;
   padding: 0.2em 0.5em 0.2em 0.5em;
@@ -49,6 +51,7 @@
 
 .rbc-toolbar {
   margin-bottom: 2em;
+  padding: 0;
 }
 
 .rbc-toolbar button {
@@ -94,6 +97,23 @@
   border-radius: 20px;
 }
 
+.rbc-time-view .rbc-event-content {
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #222;
+  max-height: 1.2em; /* roughly one line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rbc-month-view .rbc-event-content {
+  max-height: none; /* remove height restriction */
+  overflow: visible;
+  white-space: normal;
+  color: #fff; /* original white text */
+}
+
 .rbc-time-header.rbc-overflowing {
   background-color: rgba(215, 245, 252, 0.4);
 }
@@ -113,4 +133,90 @@
 
 .rbc-agenda-table {
   background-color: white;
+}
+
+.search-suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 80%;
+  margin-bottom: 3.5em;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 100px;
+  overflow-y: auto;
+  z-index: 100;
+  list-style: none;
+  margin-left: 20%;
+  padding: 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 80%;
+}
+
+.search-suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.rbc-event {
+  display: flex;
+  flex-direction: column; /* stack children vertically */
+  align-items: flex-start; /* align left */
+  padding: 2px; /* optional spacing */
+}
+
+.rbc-event-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.rbc-event-label {
+  font-size: 0.7em;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: white;
+  white-space: nowrap;
+}
+
+.rbc-event-content {
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #222;
+
+  display: block;
+  max-height: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
