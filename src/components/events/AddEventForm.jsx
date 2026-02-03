@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toastr from "toastr";
 import { useAddMyEventMutation } from "../../slices/eventsSlice";
+import "../../css/AddEventModal.css";
 
 export default function AddMyEventForm({ closeModal }) {
   const [eventName, setEventName] = useState("");
@@ -53,10 +54,12 @@ export default function AddMyEventForm({ closeModal }) {
   return (
     <div className="event-modal">
       <div className="event-modal-content">
-        <h3>Add New Event</h3>
+        <h3 className="add-event-title">Add New Event</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="eventName">Event Name</label>
+            <label className="event-name-label" htmlFor="eventName">
+              Event Name
+            </label>
             <input
               type="text"
               id="eventName"
@@ -67,7 +70,9 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label className="event-description-label" htmlFor="description">
+              Description
+            </label>
             <textarea
               id="description"
               value={description}
@@ -77,7 +82,10 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="eventDate"> Date & Time</label>
+            <label className="date-and-time" htmlFor="eventDate">
+              {" "}
+              Date & Time
+            </label>
             <input
               type="datetime-local"
               id="eventDate"
