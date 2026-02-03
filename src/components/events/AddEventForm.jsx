@@ -62,7 +62,7 @@ export default function AddMyEventForm({ closeModal }) {
             </label>
             <input
               type="text"
-              id="eventName"
+              id="event-name-input"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
               required
@@ -74,7 +74,7 @@ export default function AddMyEventForm({ closeModal }) {
               Description
             </label>
             <textarea
-              id="description"
+              id="description-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -82,24 +82,31 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label className="date-and-time" htmlFor="eventDate">
+
+            <label className="date-and-time-label" htmlFor="eventDate">
               {" "}
               Date & Time
             </label>
             <input
               type="datetime-local"
-              id="eventDate"
+              id="event-date-input"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
               required
             />
           </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="add-calendar-event-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Adding..." : "Add Event"}
           </button>
+          <button className="close-calendar-event-button" onClick={closeModal}>
+            Close
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </div>
     </div>
   );

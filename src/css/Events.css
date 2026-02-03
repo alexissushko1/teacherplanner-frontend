@@ -220,3 +220,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.confirmation-question {
+  font-family: "Courier New";
+  margin-top: 2em;
+  padding-top: 1.2em;
+  border-top: 5px solid gray;
+}
+
+.confirmation-button {
+  margin-left: 17%;
+}

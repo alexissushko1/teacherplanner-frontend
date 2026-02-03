@@ -1,0 +1,44 @@
+.calendar-event-name-label {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.add-event-title,
+.event-description-label,
+.date-and-time-label {
+  font-family: "Courier New";
+  margin-right: 0.7em;
+}
+
+#description-input {
+  box-shadow: 2px 2px 2px rgba(93, 91, 91, 0.155);
+  border-radius: 10px;
+  border: none;
+}
+
+#event-date-input {
+  box-shadow: 2px 2px 2px rgba(93, 91, 91, 0.155);
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 2em;
+}
+
+#event-name-input {
+  width: 55%;
+  box-shadow: 2px 2px 2px rgba(93, 91, 91, 0.155);
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.close-event-button {
+  display: inline-block;
+}
+
+.add-calendar-event-button,
+.close-calendar-event-button {
+  margin-right: 2em;
+  background-color: #46cafa;
+  border: 3px solid #bc72f8;
+}
