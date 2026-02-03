@@ -14,7 +14,7 @@
 
 /* Modal Content */
 .event-modal-content {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 5px;
   width: 400px;
@@ -22,19 +22,58 @@
   max-height: 80%;
   overflow-y: auto; /* Allow scrolling if content overflows */
   z-index: 1060; /* Higher z-index for modal content */
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.523);
+}
+
+.description-label {
+  display: inline;
+  justify-content: flex-start;
+  font-family: "Courier New";
 }
 
 /* Close Button */
 button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
+  margin-right: 1em;
+  margin-bottom: 2em;
+  margin-left: 5px;
+  background-color: rgb(148, 148, 248);
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 15px;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+.event-modal-header {
+  display: flex;
+  justify-content: center;
+  margin-left: 50px;
+}
+
+.edit-button {
+  display: inline;
+  padding: 8px 16px;
+  background-color: #d4a5fb;
+  margin-top: 0;
+  margin-bottom: 1px;
+  margin-left: 10px;
+  color: white;
+  border: none;
+  border-radius: 70px;
+  cursor: pointer;
+  font-size: 0.7em;
+}
+
+.start-time,
+.end-time {
+  font-family: "Courier New";
+}
+
+.delete-button {
+  margin-right: 1em;
 }

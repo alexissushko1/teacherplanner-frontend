@@ -88,7 +88,7 @@ export default function EventDetailsModal({
   return (
     <div className="event-modal">
       <div className="event-modal-content">
-        <div className="modal-header">
+        <div className="event-modal-header">
           <h3>
             {editMode ? (
               <label>
@@ -103,11 +103,15 @@ export default function EventDetailsModal({
               eventName
             )}
           </h3>
-          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+          {!editMode && (
+            <button className="edit-button" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
         </div>
 
         <p>
-          <label>Description: </label>
+          <label className="description-label">Description: </label>
           {editMode ? (
             <input
               type="text"
@@ -119,7 +123,7 @@ export default function EventDetailsModal({
           )}
         </p>
 
-        <p>
+        <p className="start-time">
           Start:{" "}
           {editMode ? (
             <input
@@ -131,7 +135,7 @@ export default function EventDetailsModal({
             startDate.toLocaleString()
           )}
         </p>
-        <p>
+        <p className="end-time">
           End:{" "}
           {editMode ? (
             <input
@@ -152,8 +156,12 @@ export default function EventDetailsModal({
             </>
           ) : (
             <>
-              <button onClick={handleDelete}>Delete Event</button>
-              <button onClick={closeModal}>Close</button>
+              <button className="delete-button" onClick={handleDelete}>
+                Delete Event
+              </button>
+              <button className="close-button" onClick={closeModal}>
+                Close
+              </button>
             </>
           )}
         </div>
