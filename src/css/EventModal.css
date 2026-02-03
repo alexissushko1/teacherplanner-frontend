@@ -88,9 +88,7 @@ button:hover {
 
 .event-name-label {
   font-family: "Courier New";
-  display: flex;
-  justify-content: start;
-  margin-left: -2em;
+  display: inline-block;
 }
 
 #description-input {
