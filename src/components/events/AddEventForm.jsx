@@ -57,7 +57,7 @@ export default function AddMyEventForm({ closeModal }) {
         <h3 className="add-event-title">Add New Event</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="calendar-event-name-label" htmlFor="eventName">
+            <label className="event-name-label" htmlFor="eventName">
               Event Name
             </label>
             <input
@@ -82,6 +82,7 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
+
             <label className="date-and-time-label" htmlFor="eventDate">
               {" "}
               Date & Time
