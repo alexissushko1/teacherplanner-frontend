@@ -91,10 +91,11 @@ export default function EventDetailsModal({
         <div className="event-modal-header">
           <h3>
             {editMode ? (
-              <label>
+              <label className="event-name-label">
                 Event Name:
                 <input
                   type="text"
+                  id="event-name-input"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                 />
@@ -115,6 +116,7 @@ export default function EventDetailsModal({
           {editMode ? (
             <input
               type="text"
+              id="description-input"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
             />
@@ -128,6 +130,7 @@ export default function EventDetailsModal({
           {editMode ? (
             <input
               type="datetime-local"
+              id="start-time-input"
               value={newStartDate}
               onChange={(e) => setNewStartDate(e.target.value)}
             />
@@ -140,6 +143,7 @@ export default function EventDetailsModal({
           {editMode ? (
             <input
               type="datetime-local"
+              id="end-time-input"
               value={newEndDate}
               onChange={(e) => setNewEndDate(e.target.value)}
             />
@@ -151,8 +155,12 @@ export default function EventDetailsModal({
         <div className="modal-footer">
           {editMode ? (
             <>
-              <button onClick={handleSave}>Save</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button className="save-button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="cancel-button" onClick={handleCancelEdit}>
+                Cancel
+              </button>
             </>
           ) : (
             <>
@@ -169,8 +177,15 @@ export default function EventDetailsModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this event?</p>
-              <button onClick={handleConfirmDelete}>Confirm</button>
+              <p className="confirmation-question">
+                Are you sure you want to delete this event?
+              </p>
+              <button
+                className="confirmation-button"
+                onClick={handleConfirmDelete}
+              >
+                Confirm
+              </button>
               <button onClick={handleCancelDelete}>Cancel</button>
             </div>
           </div>

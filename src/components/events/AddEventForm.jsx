@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toastr from "toastr";
 import { useAddMyEventMutation } from "../../slices/eventsSlice";
+import "../../css/AddEventModal.css";
 
 export default function AddMyEventForm({ closeModal }) {
   const [eventName, setEventName] = useState("");
@@ -53,13 +54,15 @@ export default function AddMyEventForm({ closeModal }) {
   return (
     <div className="event-modal">
       <div className="event-modal-content">
-        <h3>Add New Event</h3>
+        <h3 className="add-event-title">Add New Event</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="eventName">Event Name</label>
+            <label className="calendar-event-name-label" htmlFor="eventName">
+              Event Name
+            </label>
             <input
               type="text"
-              id="eventName"
+              id="event-name-input"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
               required
@@ -67,9 +70,11 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label className="event-description-label" htmlFor="description">
+              Description
+            </label>
             <textarea
-              id="description"
+              id="description-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -77,21 +82,30 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="eventDate"> Date & Time</label>
+            <label className="date-and-time-label" htmlFor="eventDate">
+              {" "}
+              Date & Time
+            </label>
             <input
               type="datetime-local"
-              id="eventDate"
+              id="event-date-input"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
               required
             />
           </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="add-calendar-event-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Adding..." : "Add Event"}
           </button>
+          <button className="close-calendar-event-button" onClick={closeModal}>
+            Close
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </div>
     </div>
   );
