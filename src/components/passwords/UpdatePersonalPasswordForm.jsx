@@ -171,9 +171,21 @@ export default function PersonalPasswordModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this Login Info?</p>
-              <button onClick={handleConfirmDelete}>Confirm</button>
-              <button onClick={handleCancelDelete}>Cancel</button>
+              <p className="delete-personal-password-confirmation-question">
+                Are you sure you want to delete this Login Info?
+              </p>
+              <button
+                className="delete-personal-password-confirmation-button"
+                onClick={handleConfirmDelete}
+              >
+                Confirm
+              </button>
+              <button
+                className="cancel-delete-personal-password-button"
+                onClick={handleCancelDelete}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         )}
