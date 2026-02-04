@@ -197,6 +197,7 @@
   flex-direction: column; /* stack children vertically */
   align-items: flex-start; /* align left */
   padding: 2px; /* optional spacing */
+  overflow: hidden;
 }
 
 .rbc-event-custom {
@@ -213,13 +214,15 @@
   margin-bottom: 1px;
   color: white;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .rbc-event-content {
   font-size: 0.85em;
   font-weight: bold;
   color: #222;
-
+  width: 100%;
+  min-width: 0;
   display: block;
   max-height: 1.2em;
   overflow: hidden;
