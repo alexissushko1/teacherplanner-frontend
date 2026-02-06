@@ -102,10 +102,11 @@ export default function PersonalPasswordModal({
         <div className="personalpassword-modal-header">
           <h3>
             {editMode ? (
-              <label className="accountName">
+              <label className="personal-password-name">
                 Name:
                 <input
                   type="text"
+                  id="personal-password-name-input"
                   value={newAccountName}
                   onChange={(e) => setNewAccountName(e.target.value)}
                 />
@@ -114,18 +115,14 @@ export default function PersonalPasswordModal({
               accountName
             )}
           </h3>
-          {!editMode && (
-            <button className="editAccountButton" onClick={handleEditClick}>
-              Edit
-            </button>
-          )}
+          {!editMode && <button onClick={handleEditClick}>Edit</button>}
         </div>
         <p>
-          <label className="usernameLabel">Username: </label>
+          <label className="personal-username-label">Username: </label>
           {editMode ? (
             <input
               type="text"
-              className="usernameInput"
+              id="personal-password-name-input"
               value={newUsername}
               onChange={(e) => setNewUsername(e.target.value)}
             />
@@ -134,11 +131,11 @@ export default function PersonalPasswordModal({
           )}
         </p>
         <p>
-          <label className="passwordLabel">Password: </label>
+          <label className="personal-password-label">Password: </label>
           {editMode ? (
             <input
               type="text"
-              className="passwordInput"
+              id="personal-password-password-input"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -150,19 +147,31 @@ export default function PersonalPasswordModal({
         <div className="modal-footer">
           {editMode ? (
             <>
-              <button className="save-button" onClick={handleSave}>
+              <button
+                className="save-personal-password-button"
+                onClick={handleSave}
+              >
                 Save
               </button>
-              <button className="cancel-button" onClick={handleCancelEdit}>
+              <button
+                className="cancel-personal-password-button"
+                onClick={handleCancelEdit}
+              >
                 Cancel
               </button>
             </>
           ) : (
             <>
-              <button className="deleteButton" onClick={handleDelete}>
+              <button
+                className="delete-personal-password-button"
+                onClick={handleDelete}
+              >
                 Delete Password
               </button>
-              <button className="closeDeleteButton" onClick={closeModal}>
+              <button
+                className="close-delete-personal-password-button"
+                onClick={closeModal}
+              >
                 Close
               </button>
             </>
@@ -171,17 +180,15 @@ export default function PersonalPasswordModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p className="delete-personal-password-confirmation-question">
-                Are you sure you want to delete this Login Info?
-              </p>
+              <p>Are you sure you want to delete this Login Info?</p>
               <button
-                className="delete-personal-password-confirmation-button"
+                className="confirmation-deletion-personal-password-button"
                 onClick={handleConfirmDelete}
               >
                 Confirm
               </button>
               <button
-                className="cancel-delete-personal-password-button"
+                className="cancel-confirmation-deletion-personal-password-button"
                 onClick={handleCancelDelete}
               >
                 Cancel
