@@ -100,7 +100,7 @@ export default function PersonalPasswordModal({
     <div className="personalpassword-modal">
       <div className="personalpassword-modal-content">
         <div className="personalpassword-modal-header">
-          <h3>
+          <h3 className="personal-password-header">
             {editMode ? (
               <label className="personal-password-name">
                 Name:
@@ -115,7 +115,14 @@ export default function PersonalPasswordModal({
               accountName
             )}
           </h3>
-          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+          {!editMode && (
+            <button
+              className="edit-personal-password-button"
+              onClick={handleEditClick}
+            >
+              Edit
+            </button>
+          )}
         </div>
         <p>
           <label className="personal-username-label">Username: </label>
@@ -180,7 +187,9 @@ export default function PersonalPasswordModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this Login Info?</p>
+              <p className="delete-personal-password-question">
+                Are you sure you want to delete this Login Info?
+              </p>
               <button
                 className="confirmation-deletion-personal-password-button"
                 onClick={handleConfirmDelete}
