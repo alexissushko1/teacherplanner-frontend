@@ -153,9 +153,11 @@ export default function SchoolPasswordModal({
           )}
         </p>
         <div className="form-group">
-          <label>Are you a teacher? </label>
+          <label className="teacher-confirmation-question">
+            Are you a teacher?{" "}
+          </label>
           {editMode ? (
-            <div>
+            <div className="teacher-confirmation-div">
               <label className="isTeacherLabel">
                 <input
                   type="radio"
