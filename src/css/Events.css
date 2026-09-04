@@ -41,10 +41,9 @@
 .rbc-calendar {
   width: 75%;
   justify-content: center;
-  min-height: 40em;
+  min-height: 50em;
   margin-left: 10%;
   border-radius: 500px;
-
   display: flex;
   justify-content: center;
 }
@@ -118,6 +117,11 @@
   overflow: visible;
   white-space: normal;
   color: #fff; /* original white text */
+}
+
+.rbc-month-view {
+  margin-bottom: 9em;
+  height: 100px;
 }
 
 .rbc-time-header.rbc-overflowing {
