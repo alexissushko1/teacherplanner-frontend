@@ -27,7 +27,7 @@ export default function Tasks() {
   };
 
   if (isLoading) return <div>Loading tasks...</div>;
-  if (error) return <div>Error loading tasks. Please try again.</div>;
+  if (error) return <div className="chores-error">Log in to see chores.</div>;
 
   // Task frequency groups
   const dailyTasks = tasks.filter((t) => t.frequency === "daily");

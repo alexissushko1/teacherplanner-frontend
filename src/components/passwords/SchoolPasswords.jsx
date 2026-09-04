@@ -50,7 +50,11 @@ export default function SchoolPasswords() {
   }
 
   if (error) {
-    return <div>Error loading school passwords. Please try again.</div>;
+    return (
+      <div className="school-passwords-error">
+        Log in to see school passwords.
+      </div>
+    );
   }
 
   return (

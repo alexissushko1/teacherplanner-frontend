@@ -14,6 +14,11 @@
   color: white;
 }
 
+.habits-error {
+  margin-left: 1em;
+  font-size: 20px;
+}
+
 .habit-name-label,
 .habit-frequency-label,
 .habit-progress-check {
