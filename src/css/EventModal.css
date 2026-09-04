@@ -94,3 +94,13 @@ button:hover {
 #description-input {
   width: 60%;
 }
+
+.deletion-school-password-question {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 3px solid gray;
+}
+
+.accountName {
+  margin-left: -4em;
+}

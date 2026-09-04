@@ -153,15 +153,19 @@ export default function SchoolPasswordModal({
           )}
         </p>
         <div className="form-group">
+ schoolPasswords
           <label className="teacher-confirmation-question">
             Are you a teacher?{" "}
           </label>
+
+          <label className="teacher-confirmation">Are you a teacher? </label>
+ main
           {editMode ? (
             <div className="teacher-confirmation-div">
               <label className="isTeacherLabel">
                 <input
                   type="radio"
-                  className="isTeacherInput"
+                  id="isTeacherInput"
                   name="isTeacher"
                   value="true"
                   checked={newIsTeacher === true}
@@ -197,7 +201,10 @@ export default function SchoolPasswordModal({
             </>
           ) : (
             <>
-              <button className="deleteButton" onClick={handleDelete}>
+              <button
+                className="delete-personal-password-button"
+                onClick={handleDelete}
+              >
                 Delete Password
               </button>
               <button className="closeDeleteButton" onClick={closeModal}>
@@ -210,9 +217,21 @@ export default function SchoolPasswordModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this Login Info?</p>
-              <button onClick={handleConfirmDelete}>Confirm</button>
-              <button onClick={handleCancelDelete}>Cancel</button>
+              <p className="deletion-school-password-question">
+                Are you sure you want to delete this Login Info?
+              </p>
+              <button
+                className="confirmation-deletion-school-password-button"
+                onClick={handleConfirmDelete}
+              >
+                Confirm
+              </button>
+              <button
+                className="cancel-delete-school-password-button"
+                onClick={handleCancelDelete}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         )}
