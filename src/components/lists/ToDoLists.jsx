@@ -113,7 +113,8 @@ export default function ToDoLists() {
   };
 
   if (isLoading) return <div>Loading To Do Lists...</div>;
-  if (error) return <div>Error loading to-do lists. Please try again.</div>;
+  if (error)
+    return <div className="to-do-lists-error">Log in to see to do lists.</div>;
 
   return (
     <div className="todolist-page">

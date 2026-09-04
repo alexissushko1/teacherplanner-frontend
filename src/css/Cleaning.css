@@ -18,6 +18,11 @@
   text-align: center;
 }
 
+.chores-error {
+  margin-left: 1em;
+  font-size: 20px;
+}
+
 .quarterly-task-section,
 .monthly-task-section,
 .weekly-task-section {

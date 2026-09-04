@@ -66,7 +66,7 @@ export default function Events() {
   };
 
   if (isLoading) return <div>Loading events...</div>;
-  if (error) return <div>Error loading events. Please try again later.</div>;
+  if (error) return <div className="events-error">Log in to see events.</div>;
 
   console.log("Sample event:", eventsData[0]);
 

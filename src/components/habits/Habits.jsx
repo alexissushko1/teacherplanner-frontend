@@ -50,7 +50,7 @@ export default function Habits() {
   }
 
   if (error) {
-    return <div>Error loading habits. Please try again.</div>;
+    return <div className="habits-error">Log in to see habits.</div>;
   }
 
   const toggleProgress = (habitId, index) => {
