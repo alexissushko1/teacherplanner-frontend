@@ -95,10 +95,10 @@ button:hover {
   width: 60%;
 }
 
-.deletion-school-password-question {
-  margin-top: 3em;
+.confirmation-question {
+  margin-top: 1em;
   padding-top: 1.5em;
-  border-top: 3px solid gray;
+  border-top: none;
 }
 
 .accountName {
