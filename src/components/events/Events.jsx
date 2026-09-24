@@ -32,9 +32,15 @@ export default function Events() {
   // Convert events to calendar format
   const formatEventsForCalendar = (events) => {
     return events.map((event) => {
-      const startDate = new Date(event.eventDate);
-      const endDate = new Date(startDate);
-      endDate.setHours(startDate.getHours() + 1);
+      const startStr = event.eventDate.replace("Z", "");
+      const endStr = event.endEventDate
+        ? event.endEventDate.replace("Z", "")
+        : null;
+
+      const startDate = new Date(startStr);
+      const endDate = endStr
+        ? new Date(endStr)
+        : new Date(startDate.getTime() + 60 * 60 * 1000);
 
       return {
         ...event,

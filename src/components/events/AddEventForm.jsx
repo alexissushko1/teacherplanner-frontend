@@ -7,6 +7,7 @@ export default function AddMyEventForm({ closeModal }) {
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
   const [eventDate, setEventDate] = useState("");
+  const [endEventDate, setEndEventDate] = useState("");
   const [userId, setUserId] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -18,7 +19,7 @@ export default function AddMyEventForm({ closeModal }) {
     setIsSubmitting(true);
 
     // Validate inputs
-    if (!eventName || !description || !eventDate) {
+    if (!eventName || !description || !eventDate || !endEventDate) {
       toastr.error("All fields are required.");
       setIsSubmitting(false);
       return;
@@ -27,10 +28,17 @@ export default function AddMyEventForm({ closeModal }) {
     try {
       //Convert date to ISO String
 
-      const isoDate = new Date(eventDate).toISOString();
+      const isoDateStart = `${eventDate}:00Z`;
+      const isoDateEnd = `${endEventDate}:00Z`;
 
       // Send request to add the event
-      await addEvent({ userId, eventName, description, eventDate: isoDate });
+      await addEvent({
+        userId,
+        eventName,
+        description,
+        eventDate: isoDateStart,
+        endEventDate: isoDateEnd,
+      });
 
       // Success
       toastr.success("Event added successfully!", {
@@ -81,8 +89,7 @@ export default function AddMyEventForm({ closeModal }) {
             />
           </div>
 
-          <div className="form-group">
-
+          <div className="form-group date-and-time-row">
             <label className="date-and-time-label" htmlFor="eventDate">
               {" "}
               Date & Time
@@ -93,6 +100,19 @@ export default function AddMyEventForm({ closeModal }) {
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
               required
+            />
+          </div>
+
+          <div className="form-group date-and-time-row">
+            <label className="date-and-time-label" htmlFor="endEventDate">
+              {" "}
+              End Date & Time
+            </label>
+            <input
+              type="datetime-local"
+              id="end-event-date-input"
+              value={endEventDate}
+              onChange={(e) => setEndEventDate(e.target.value)}
             />
           </div>
 
