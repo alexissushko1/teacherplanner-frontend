@@ -14,11 +14,21 @@ export default function EventDetailsModal({
   onDeleteSuccess,
   onUpdateSuccess,
 }) {
-  const { eventName, description, eventDate, id } = event;
+  const { eventName, description, eventDate, endEventDate, id } = event;
 
-  const startDate = new Date(eventDate);
-  const endDate = new Date(startDate);
-  endDate.setHours(startDate.getHours() + 1);
+  const startStr =
+    typeof eventDate === "string"
+      ? eventDate.replace("Z", "")
+      : event.eventDate;
+  const endStr =
+    typeof endEventDate === "string"
+      ? endEventDate.replace("Z", "")
+      : event.endEventDate;
+
+  const startDate = new Date(startStr);
+  const endDate = endStr
+    ? new Date(endStr)
+    : new Date(startDate.getTime() + 60 * 60 * 1000);
 
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState(eventName);
@@ -71,7 +81,7 @@ export default function EventDetailsModal({
         id,
         eventName: newName,
         eventDate: new Date(newStartDate).toISOString(),
-        endDate: new Date(newEndDate).toISOString(),
+        endEventDate: new Date(newEndDate).toISOString(),
         description: newDescription,
       }).unwrap();
 

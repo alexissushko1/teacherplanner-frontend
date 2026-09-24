@@ -3,10 +3,20 @@
 }
 
 .add-event-title,
-.event-description-label,
-.date-and-time-label {
+.event-description-label {
   font-family: "Courier New";
   margin-right: 0.7em;
+}
+
+.date-and-time-label {
+  font-family: "Courier New";
+  margin-right: 0;
+}
+
+.date-and-time-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
 }
 
 #description-input {
@@ -23,6 +33,15 @@
   padding: 5px;
   margin-top: 10px;
   margin-left: 5px;
+  margin-bottom: 2em;
+}
+
+#end-event-date-input {
+  box-shadow: 2px 2px 8px rgba(93, 91, 91, 0.195);
+  border-radius: 8px;
+  border: none;
+  padding: 5px;
+  margin-top: 10px;
   margin-bottom: 2em;
 }
 
