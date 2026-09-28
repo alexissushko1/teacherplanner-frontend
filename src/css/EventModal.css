@@ -89,7 +89,7 @@ button:hover {
   box-shadow: 2px 2px 2px rgba(93, 91, 91, 0.155);
   border-radius: 10px;
   width: 25em;
-  margin-left: -1em;
+  margin-left: -0.5em;
   margin-bottom: 0.5em;
 }
 
