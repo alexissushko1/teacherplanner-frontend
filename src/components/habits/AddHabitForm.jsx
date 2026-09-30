@@ -74,7 +74,7 @@ export default function AddHabitForm({ closeModal, habitId }) {
             />
           </div>
 
-          <div className="form-group">
+          {/*  <div className="form-group">
             <label
               className="habit-frequency-label"
               htmlFor={`frequency-${userId}`}
@@ -123,6 +123,7 @@ export default function AddHabitForm({ closeModal, habitId }) {
               required
             />
           </div>
+  */}
           <button
             className="add-habit-button"
             type="submit"
