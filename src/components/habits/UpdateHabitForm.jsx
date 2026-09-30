@@ -125,7 +125,7 @@ export default function UpdateHabitModal({
             </button>
           )}
         </div>
-        <p>
+        {/*  <p>
           <label className="habitFrequencyLabel">Frequency: </label>
           {editMode ? (
             <input
@@ -164,6 +164,7 @@ export default function UpdateHabitModal({
             progress
           )}
         </p>
+          */}
 
         <div className="modal-footer">
           {editMode ? (
@@ -189,9 +190,21 @@ export default function UpdateHabitModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this habit?</p>
-              <button onClick={handleConfirmDelete}>Confirm</button>
-              <button onClick={handleCancelDelete}>Cancel</button>
+              <p className="confirm-delete-habit-question">
+                Are you sure you want to delete this habit?
+              </p>
+              <button
+                className="confirm-delete-habit-button"
+                onClick={handleConfirmDelete}
+              >
+                Confirm
+              </button>
+              <button
+                className="cancel-delete-habit-button"
+                onClick={handleCancelDelete}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         )}

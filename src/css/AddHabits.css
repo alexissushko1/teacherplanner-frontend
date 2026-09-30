@@ -37,12 +37,18 @@
 .add-habit-close-button {
   margin-right: 2em;
   margin-bottom: 2em;
+  margin-top: 3em;
   background-color: rgb(148, 148, 248);
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 20px;
+}
+
+.add-habit-button {
+  margin-left: 2em;
 }
 
 .add-habit-button:hover,
