@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLoginMutation, useRegisterMutation } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
-//import toastr from "toastr";
+import toastr from "toastr";
 import "../../css/AuthForm.css";
 
 export default function AuthForm() {
@@ -35,9 +35,9 @@ export default function AuthForm() {
       if (isLogin) {
         navigate("/");
       }
-      //toastr.options.extendedTimeOut = 0;
-      //toastr.options.positionClass = "toast-bottom-right";
-      //toastr.success(`${authAction} successful!`);
+      toastr.options.extendedTimeOut = 0;
+      toastr.options.positionClass = "toast-bottom-right";
+      toastr.success(`${authAction} successful!`);
     } catch (e) {
       console.error(e);
       if (e & e.message) {
@@ -51,15 +51,17 @@ export default function AuthForm() {
       if (isLogin && loginError) {
         console.error("Login error", loginError);
         console.error(`${JSON.stringify(loginError.data)}`);
-        //toastr.error(`${JSON.stringify(loginError.data)}`);
-        //toastr.options.extendedTimeOut = 30;
+        toastr.error(`Invalid credentials`);
+        toastr.options.extendedTimeOut = 30;
       } else if (!isLogin && registerError) {
         console.error("Register error: ", registerError);
         console.error(
           `JSON Register error: ${JSON.stringify(registerError.data.e)}`
         );
-        //toastr.error(`${JSON.stringify(registerError.data.e)}`);
-        //toastr.options.extendedTimeOut = 30;
+        toastr.error(
+          `Invalid registration. Must use unique username and email.`
+        );
+        toastr.options.extendedTimeOut = 30;
       }
     }
   };

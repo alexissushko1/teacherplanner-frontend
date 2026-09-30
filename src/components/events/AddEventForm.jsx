@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import toastr from "toastr";
 import { useAddMyEventMutation } from "../../slices/eventsSlice";
+import "../../css/AddEventModal.css";
 
 export default function AddMyEventForm({ closeModal }) {
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
   const [eventDate, setEventDate] = useState("");
+  const [endEventDate, setEndEventDate] = useState("");
   const [userId, setUserId] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -17,7 +19,7 @@ export default function AddMyEventForm({ closeModal }) {
     setIsSubmitting(true);
 
     // Validate inputs
-    if (!eventName || !description || !eventDate) {
+    if (!eventName || !description || !eventDate || !endEventDate) {
       toastr.error("All fields are required.");
       setIsSubmitting(false);
       return;
@@ -26,10 +28,17 @@ export default function AddMyEventForm({ closeModal }) {
     try {
       //Convert date to ISO String
 
-      const isoDate = new Date(eventDate).toISOString();
+      const isoDateStart = `${eventDate}:00Z`;
+      const isoDateEnd = `${endEventDate}:00Z`;
 
       // Send request to add the event
-      await addEvent({ userId, eventName, description, eventDate: isoDate });
+      await addEvent({
+        userId,
+        eventName,
+        description,
+        eventDate: isoDateStart,
+        endEventDate: isoDateEnd,
+      });
 
       // Success
       toastr.success("Event added successfully!", {
@@ -53,13 +62,15 @@ export default function AddMyEventForm({ closeModal }) {
   return (
     <div className="event-modal">
       <div className="event-modal-content">
-        <h3>Add New Event</h3>
+        <h3 className="add-event-title">Add New Event</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="eventName">Event Name</label>
+            <label className="event-name-label" htmlFor="eventName">
+              Event Name
+            </label>
             <input
               type="text"
-              id="eventName"
+              id="event-name-input"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
               required
@@ -67,31 +78,55 @@ export default function AddMyEventForm({ closeModal }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label className="event-description-label" htmlFor="description">
+              Description
+            </label>
             <textarea
-              id="description"
+              id="description-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="eventDate"> Date & Time</label>
+          <div className="form-group date-and-time-row">
+            <label className="date-and-time-label" htmlFor="eventDate">
+              {" "}
+              Date & Time
+            </label>
             <input
               type="datetime-local"
-              id="eventDate"
+              id="event-date-input"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
               required
             />
           </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <div className="form-group date-and-time-row">
+            <label className="date-and-time-label" htmlFor="endEventDate">
+              {" "}
+              End Date & Time
+            </label>
+            <input
+              type="datetime-local"
+              id="end-event-date-input"
+              value={endEventDate}
+              onChange={(e) => setEndEventDate(e.target.value)}
+            />
+          </div>
+
+          <button
+            className="add-calendar-event-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Adding..." : "Add Event"}
           </button>
+          <button className="close-calendar-event-button" onClick={closeModal}>
+            Close
+          </button>
         </form>
-        <button onClick={closeModal}>Close</button>
       </div>
     </div>
   );

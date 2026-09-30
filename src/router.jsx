@@ -11,6 +11,7 @@ import SchoolPasswords from "./components/passwords/SchoolPasswords";
 import ToDoLists from "./components/lists/ToDoLists";
 import ShoppingLists from "./components/lists/ShoppingLists";
 import Habits from "./components/habits/Habits";
+import Tasks from "./components/habits/Cleaning";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "/toDoLists", element: <ToDoLists /> },
       { path: "/shoppingLists", element: <ShoppingLists /> },
       { path: "/habits", element: <Habits /> },
+      { path: "/habits/cleaning", element: <Tasks /> },
     ],
   },
 ]);

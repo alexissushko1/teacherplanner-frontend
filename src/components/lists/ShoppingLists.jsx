@@ -125,7 +125,10 @@ export default function ShoppingLists() {
   };
 
   if (isLoading) return <div>Loading shopping Lists...</div>;
-  if (error) return <div>Error loading shopping lists. Please try again.</div>;
+  if (error)
+    return (
+      <div className="shopping-lists-error">Log in to see shopping lists.</div>
+    );
 
   return (
     <div className="shoppinglist-page">

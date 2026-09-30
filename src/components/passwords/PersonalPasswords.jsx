@@ -53,7 +53,11 @@ export default function PersonalPasswords() {
   }
 
   if (error) {
-    return <div>Error loading personal passwords. Please try again.</div>;
+    return (
+      <div className="personal-passwords-error">
+        Log in to see personal passwords.
+      </div>
+    );
   }
 
   return (

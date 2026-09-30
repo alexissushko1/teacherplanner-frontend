@@ -19,6 +19,11 @@
   align-items: center;
 }
 
+.shopping-lists-error {
+  margin-left: 1em;
+  font-size: 20px;
+}
+
 .shoppingAddButton:hover {
   background: #fdf498; /* Slightly brighter yellow if you want a hover effect */
   box-shadow: 4px 4px 0 #faf18d, 7px 7px 0 #f5e774, 10px 10px 0 #f0d000,

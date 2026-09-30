@@ -14,11 +14,21 @@ export default function EventDetailsModal({
   onDeleteSuccess,
   onUpdateSuccess,
 }) {
-  const { eventName, description, eventDate, id } = event;
+  const { eventName, description, eventDate, endEventDate, id } = event;
 
-  const startDate = new Date(eventDate);
-  const endDate = new Date(startDate);
-  endDate.setHours(startDate.getHours() + 1);
+  const startStr =
+    typeof eventDate === "string"
+      ? eventDate.replace("Z", "")
+      : event.eventDate;
+  const endStr =
+    typeof endEventDate === "string"
+      ? endEventDate.replace("Z", "")
+      : event.endEventDate;
+
+  const startDate = new Date(startStr);
+  const endDate = endStr
+    ? new Date(endStr)
+    : new Date(startDate.getTime() + 60 * 60 * 1000);
 
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState(eventName);
@@ -71,7 +81,7 @@ export default function EventDetailsModal({
         id,
         eventName: newName,
         eventDate: new Date(newStartDate).toISOString(),
-        endDate: new Date(newEndDate).toISOString(),
+        endEventDate: new Date(newEndDate).toISOString(),
         description: newDescription,
       }).unwrap();
 
@@ -88,13 +98,14 @@ export default function EventDetailsModal({
   return (
     <div className="event-modal">
       <div className="event-modal-content">
-        <div className="modal-header">
+        <div className="event-modal-header">
           <h3>
             {editMode ? (
-              <label>
+              <label className="event-name-label">
                 Event Name:
                 <input
                   type="text"
+                  id="event-name-input"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                 />
@@ -103,14 +114,19 @@ export default function EventDetailsModal({
               eventName
             )}
           </h3>
-          {!editMode && <button onClick={handleEditClick}>Edit</button>}
+          {!editMode && (
+            <button className="edit-button" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
         </div>
 
         <p>
-          <label>Description: </label>
+          <label className="description-label">Description: </label>
           {editMode ? (
             <input
               type="text"
+              id="description-input"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
             />
@@ -119,11 +135,12 @@ export default function EventDetailsModal({
           )}
         </p>
 
-        <p>
+        <p className="start-time">
           Start:{" "}
           {editMode ? (
             <input
               type="datetime-local"
+              id="start-time-input"
               value={newStartDate}
               onChange={(e) => setNewStartDate(e.target.value)}
             />
@@ -131,11 +148,12 @@ export default function EventDetailsModal({
             startDate.toLocaleString()
           )}
         </p>
-        <p>
+        <p className="end-time">
           End:{" "}
           {editMode ? (
             <input
               type="datetime-local"
+              id="end-time-input"
               value={newEndDate}
               onChange={(e) => setNewEndDate(e.target.value)}
             />
@@ -147,13 +165,21 @@ export default function EventDetailsModal({
         <div className="modal-footer">
           {editMode ? (
             <>
-              <button onClick={handleSave}>Save</button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button className="save-button" onClick={handleSave}>
+                Save
+              </button>
+              <button className="cancel-button" onClick={handleCancelEdit}>
+                Cancel
+              </button>
             </>
           ) : (
             <>
-              <button onClick={handleDelete}>Delete Event</button>
-              <button onClick={closeModal}>Close</button>
+              <button className="delete-button" onClick={handleDelete}>
+                Delete Event
+              </button>
+              <button className="close-button" onClick={closeModal}>
+                Close
+              </button>
             </>
           )}
         </div>
@@ -161,8 +187,15 @@ export default function EventDetailsModal({
         {showConfirmDelete && (
           <div className="confirmation-modal">
             <div className="confirmation-content">
-              <p>Are you sure you want to delete this event?</p>
-              <button onClick={handleConfirmDelete}>Confirm</button>
+              <p className="confirmation-question">
+                Are you sure you want to delete this event?
+              </p>
+              <button
+                className="confirmation-button"
+                onClick={handleConfirmDelete}
+              >
+                Confirm
+              </button>
               <button onClick={handleCancelDelete}>Cancel</button>
             </div>
           </div>
