@@ -125,7 +125,7 @@ export default function UpdateHabitModal({
             </button>
           )}
         </div>
-        {/*}  <p>
+        {/*  <p>
           <label className="habitFrequencyLabel">Frequency: </label>
           {editMode ? (
             <input
